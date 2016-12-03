@@ -39,7 +39,7 @@ struct{
 	unsigned char hour;
 	unsigned char minute;
 	unsigned char second;
-}Time={0x16,0x11,0x30,0x03,0x18,0x00,0x00,};
+}Time={0x16,0x12,0x04,0x07,0x00,0x55,0x00,};
 	
 unsigned char DS3231_Date[15]={"2000Äê00ÔÂ00ÈÕ"};
 unsigned char DS3231_Time[9]={"00:00:00"};

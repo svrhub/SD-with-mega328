@@ -5,9 +5,11 @@
  * Author : Stone
  */ 
 #define F_CPU 16000000UL
+#include <avr/pgmspace.h>
 #include <avr/io.h>
 #include <util/delay.h>
 #include <avr/interrupt.h>
+typedef unsigned char PROGMEM prog_uchar;
 #include <string.h>
 #include "SerialPort.h"
 #include "IIC.h"
@@ -15,6 +17,7 @@
 #include "diskio.h"
 #include "ff.h"
 #include "MMC.h"
+#include "LCD_96_64.h"
 
 FATFS FatFs; 
 FRESULT scan_files (char* path);
@@ -24,9 +27,12 @@ FRESULT write();
 int main(void)
 {
 	DDRD|=(1<<PORTD6);
+	DDRC=0xff;
+	LCDInit();	
 	unsigned char temp1=0,temp2=0,i=0;
     Serial_Init(57600);
 	Initialize_DS3231();
+	//WriteTime_DS3231();
 	_delay_ms(1000);
 	Serial_SendString("Ready!\r\n");
 	char line[29]; 
@@ -77,8 +83,14 @@ int main(void)
 				if (!fr)
 				{
 					fr=f_write(&fil,line,27,&i);
+					if (!fr)
+					{
+						putstr(20,7,"Write OK!");
+					}
 					f_close(&fil);
 					f_mount(0, NULL);
+					putstr(20,4,DS3231_Time);
+					putstr(40,2,DS3231_Temperature);
 					break;
 				}
 			}
