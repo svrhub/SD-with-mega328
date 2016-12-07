@@ -42,7 +42,7 @@ int main(void)
 	fr=f_mount(0,&FatFs);
 	for (i=0;i<5;i++)
 	{
-		fr=f_open(&fil,"/test1.txt",FA_CREATE_ALWAYS|FA_WRITE);
+		fr=f_open(&fil,"/test1.txt",FA_OPEN_ALWAYS);
 		if (!fr) break;
 	}
 	if (i==5)
@@ -87,17 +87,23 @@ int main(void)
 					{
 						putstr(20,7,"Write OK!");
 					}
+					else
+					{
+						putstr(16,7,"Write Error!");
+					}
 					f_close(&fil);
 					f_mount(0, NULL);
 					putstr(20,4,DS3231_Time);
 					putstr(40,2,DS3231_Temperature);
 					break;
 				}
+				f_close(&fil);
+				f_mount(0, NULL);
 			}
 			if (i==5)
 			{
 				Serial_SendString("mount error!");
-				return 0;
+				//return 0;
 			}							
 			for (i=0;i<28;i++)
 			{

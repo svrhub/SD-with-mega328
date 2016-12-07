@@ -3,31 +3,31 @@ SD with mega328.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         000000b4  00800100  0000377c  00003810  2**0
+  0 .data         000000c0  00800100  0000379c  00003830  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  1 .text         0000377c  00000000  00000000  00000094  2**1
+  1 .text         0000379c  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .bss          00000237  008001b4  008001b4  000038c4  2**0
+  2 .bss          00000237  008001c0  008001c0  000038f0  2**0
                   ALLOC
-  3 .comment      00000030  00000000  00000000  000038c4  2**0
+  3 .comment      00000030  00000000  00000000  000038f0  2**0
                   CONTENTS, READONLY
-  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  000038f4  2**2
+  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00003920  2**2
                   CONTENTS, READONLY
-  5 .debug_aranges 00000358  00000000  00000000  00003934  2**0
+  5 .debug_aranges 00000358  00000000  00000000  00003960  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   00005e1b  00000000  00000000  00003c8c  2**0
+  6 .debug_info   00005e77  00000000  00000000  00003cb8  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 00000b59  00000000  00000000  00009aa7  2**0
+  7 .debug_abbrev 00000b59  00000000  00000000  00009b2f  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   0000167b  00000000  00000000  0000a600  2**0
+  8 .debug_line   00001688  00000000  00000000  0000a688  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  000010d8  00000000  00000000  0000bc7c  2**2
+  9 .debug_frame  000010d8  00000000  00000000  0000bd10  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    00000a2e  00000000  00000000  0000cd54  2**0
+ 10 .debug_str    00000a2e  00000000  00000000  0000cde8  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    00007e14  00000000  00000000  0000d782  2**0
+ 11 .debug_loc    00007e37  00000000  00000000  0000d816  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 00000390  00000000  00000000  00015596  2**0
+ 12 .debug_ranges 00000390  00000000  00000000  0001564d  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -104,18 +104,18 @@ Disassembly of section .text:
      254:	11 e0       	ldi	r17, 0x01	; 1
      256:	a0 e0       	ldi	r26, 0x00	; 0
      258:	b1 e0       	ldi	r27, 0x01	; 1
-     25a:	ec e7       	ldi	r30, 0x7C	; 124
+     25a:	ec e9       	ldi	r30, 0x9C	; 156
      25c:	f7 e3       	ldi	r31, 0x37	; 55
      25e:	02 c0       	rjmp	.+4      	; 0x264 <__do_copy_data+0x10>
      260:	05 90       	lpm	r0, Z+
      262:	0d 92       	st	X+, r0
-     264:	a4 3b       	cpi	r26, 0xB4	; 180
+     264:	a0 3c       	cpi	r26, 0xC0	; 192
      266:	b1 07       	cpc	r27, r17
      268:	d9 f7       	brne	.-10     	; 0x260 <__do_copy_data+0xc>
 
 0000026a <__do_clear_bss>:
      26a:	23 e0       	ldi	r18, 0x03	; 3
-     26c:	a4 eb       	ldi	r26, 0xB4	; 180
+     26c:	a0 ec       	ldi	r26, 0xC0	; 192
      26e:	b1 e0       	ldi	r27, 0x01	; 1
      270:	01 c0       	rjmp	.+2      	; 0x274 <.do_clear_bss_start>
 
@@ -123,11 +123,11 @@ Disassembly of section .text:
      272:	1d 92       	st	X+, r1
 
 00000274 <.do_clear_bss_start>:
-     274:	ab 3e       	cpi	r26, 0xEB	; 235
+     274:	a7 3f       	cpi	r26, 0xF7	; 247
      276:	b2 07       	cpc	r27, r18
      278:	e1 f7       	brne	.-8      	; 0x272 <.do_clear_bss_loop>
      27a:	0e 94 2a 17 	call	0x2e54	; 0x2e54 <main>
-     27e:	0c 94 bc 1b 	jmp	0x3778	; 0x3778 <_exit>
+     27e:	0c 94 cc 1b 	jmp	0x3798	; 0x3798 <_exit>
 
 00000282 <__bad_interrupt>:
      282:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
@@ -146,7 +146,7 @@ unsigned char disk_initialize(unsigned char drv)
 	}
 
 	state = SD_Init();      //SD卡的初始化
-     28a:	0e 94 a9 18 	call	0x3152	; 0x3152 <SD_Init>
+     28a:	0e 94 b9 18 	call	0x3172	; 0x3172 <SD_Init>
 	 
 	 
 	
@@ -164,7 +164,7 @@ unsigned char disk_initialize(unsigned char drv)
 		Serial_SendString("InitializeFail\r\n");
      296:	8a e2       	ldi	r24, 0x2A	; 42
      298:	91 e0       	ldi	r25, 0x01	; 1
-     29a:	0e 94 71 1b 	call	0x36e2	; 0x36e2 <Serial_SendString>
+     29a:	0e 94 81 1b 	call	0x3702	; 0x3702 <Serial_SendString>
         return STA_NOINIT;  //其他错误：初始化失败
      29e:	81 e0       	ldi	r24, 0x01	; 1
      2a0:	08 95       	ret
@@ -243,7 +243,7 @@ DSTATUS disk_status (
     {    
 		Serial_Send(5+0x30);
      2d0:	85 e3       	ldi	r24, 0x35	; 53
-     2d2:	0e 94 69 1b 	call	0x36d2	; 0x36d2 <Serial_Send>
+     2d2:	0e 94 79 1b 	call	0x36f2	; 0x36f2 <Serial_Send>
         return RES_PARERR;  //仅支持单磁盘操作，count不能等于0，否则返回参数错误
      2d6:	84 e0       	ldi	r24, 0x04	; 4
      2d8:	14 c0       	rjmp	.+40     	; 0x302 <disk_read+0x48>
@@ -260,7 +260,7 @@ DSTATUS disk_status (
      2de:	ab 01       	movw	r20, r22
      2e0:	c7 01       	movw	r24, r14
      2e2:	b6 01       	movw	r22, r12
-     2e4:	0e 94 71 19 	call	0x32e2	; 0x32e2 <SD_ReadSingleBlock>
+     2e4:	0e 94 81 19 	call	0x3302	; 0x3302 <SD_ReadSingleBlock>
      2e8:	98 2f       	mov	r25, r24
      2ea:	07 c0       	rjmp	.+14     	; 0x2fa <disk_read+0x40>
     }                                                
@@ -271,7 +271,7 @@ DSTATUS disk_status (
      2ee:	ab 01       	movw	r20, r22
      2f0:	c7 01       	movw	r24, r14
      2f2:	b6 01       	movw	r22, r12
-     2f4:	0e 94 9a 19 	call	0x3334	; 0x3334 <SD_ReadMultiBlock>
+     2f4:	0e 94 aa 19 	call	0x3354	; 0x3354 <SD_ReadMultiBlock>
      2f8:	98 2f       	mov	r25, r24
         }                                      
         buff+=512;                             
@@ -327,7 +327,7 @@ DSTATUS disk_status (
      322:	21 f4       	brne	.+8      	; 0x32c <disk_write+0x1e>
     {
         res = SD_WriteSingleBlock(sector, buff);
-     324:	0e 94 d7 19 	call	0x33ae	; 0x33ae <SD_WriteSingleBlock>
+     324:	0e 94 e7 19 	call	0x33ce	; 0x33ce <SD_WriteSingleBlock>
      328:	98 2f       	mov	r25, r24
      32a:	04 c0       	rjmp	.+8      	; 0x334 <disk_write+0x26>
     }
@@ -335,7 +335,7 @@ DSTATUS disk_status (
     {
         res = SD_WriteMultiBlock(sector, buff, count);
      32c:	20 2f       	mov	r18, r16
-     32e:	0e 94 3e 1a 	call	0x347c	; 0x347c <SD_WriteMultiBlock>
+     32e:	0e 94 4e 1a 	call	0x349c	; 0x349c <SD_WriteMultiBlock>
      332:	98 2f       	mov	r25, r24
     }
     // 返回值转换
@@ -396,7 +396,7 @@ DSTATUS disk_status (
         SD_CS_L;
      35e:	2a 98       	cbi	0x05, 2	; 5
         if(SD_WaitReady()==0)
-     360:	0e 94 37 1a 	call	0x346e	; 0x346e <SD_WaitReady>
+     360:	0e 94 47 1a 	call	0x348e	; 0x348e <SD_WaitReady>
      364:	91 e0       	ldi	r25, 0x01	; 1
      366:	81 11       	cpse	r24, r1
      368:	01 c0       	rjmp	.+2      	; 0x36c <disk_ioctl+0x24>
@@ -425,7 +425,7 @@ DSTATUS disk_status (
 
     case GET_SECTOR_COUNT:
         *(DWORD*)buff = SD_GetCapacity();
-     37c:	0e 94 d4 1a 	call	0x35a8	; 0x35a8 <SD_GetCapacity>
+     37c:	0e 94 e4 1a 	call	0x35c8	; 0x35c8 <SD_GetCapacity>
      380:	68 83       	st	Y, r22
      382:	79 83       	std	Y+1, r23	; 0x01
      384:	8a 83       	std	Y+2, r24	; 0x02
@@ -2539,7 +2539,7 @@ DWORD clust2sect (	/* !=0: Sector number, 0: Failed - invalid cluster# */
 	return clst * fs->csize + fs->database;
      f40:	a2 81       	ldd	r26, Z+2	; 0x02
      f42:	b0 e0       	ldi	r27, 0x00	; 0
-     f44:	0e 94 b1 1b 	call	0x3762	; 0x3762 <__muluhisi3>
+     f44:	0e 94 c1 1b 	call	0x3782	; 0x3782 <__muluhisi3>
      f48:	c6 a0       	ldd	r12, Z+38	; 0x26
      f4a:	d7 a0       	ldd	r13, Z+39	; 0x27
      f4c:	e0 a4       	ldd	r14, Z+40	; 0x28
@@ -4219,8 +4219,8 @@ FRESULT chk_mounted (	/* FR_OK(0): successful, !=0: any error occured */
     17ea:	36 c2       	rjmp	.+1132   	; 0x1c58 <chk_mounted+0x4c8>
 		return FR_INVALID_DRIVE;
 	*rfs = fs = FatFs[vol];			/* Returen pointer to the corresponding file system object */
-    17ec:	e0 91 b6 01 	lds	r30, 0x01B6
-    17f0:	f0 91 b7 01 	lds	r31, 0x01B7
+    17ec:	e0 91 c2 01 	lds	r30, 0x01C2
+    17f0:	f0 91 c3 01 	lds	r31, 0x01C3
     17f4:	ff 83       	std	Y+7, r31	; 0x07
     17f6:	ee 83       	std	Y+6, r30	; 0x06
     17f8:	db 01       	movw	r26, r22
@@ -4468,7 +4468,7 @@ FRESULT chk_mounted (	/* FR_OK(0): successful, !=0: any error occured */
     1976:	a3 83       	std	Z+3, r26	; 0x03
 	fsize *= fs->n_fats;								/* (Number of sectors in FAT area) */
     1978:	b0 e0       	ldi	r27, 0x00	; 0
-    197a:	0e 94 b1 1b 	call	0x3762	; 0x3762 <__muluhisi3>
+    197a:	0e 94 c1 1b 	call	0x3782	; 0x3782 <__muluhisi3>
     197e:	2b 01       	movw	r4, r22
     1980:	3c 01       	movw	r6, r24
 	fs->fatbase = bsect + LD_WORD(fs->win+BPB_RsvdSecCnt); /* FAT start sector (lba) */
@@ -4604,7 +4604,7 @@ FRESULT chk_mounted (	/* FR_OK(0): successful, !=0: any error occured */
     1a76:	30 e0       	ldi	r19, 0x00	; 0
     1a78:	40 e0       	ldi	r20, 0x00	; 0
     1a7a:	50 e0       	ldi	r21, 0x00	; 0
-    1a7c:	0e 94 80 1b 	call	0x3700	; 0x3700 <__udivmodsi4>
+    1a7c:	0e 94 90 1b 	call	0x3720	; 0x3720 <__udivmodsi4>
 	fs->fatbase = bsect + LD_WORD(fs->win+BPB_RsvdSecCnt); /* FAT start sector (lba) */
 	fs->csize = fs->win[BPB_SecPerClus];				/* Number of sectors per cluster */
 	fs->n_rootdir = LD_WORD(fs->win+BPB_RootEntCnt);	/* Nmuber of root directory entries */
@@ -4887,11 +4887,11 @@ FRESULT chk_mounted (	/* FR_OK(0): successful, !=0: any error occured */
 	fs->cdir = 0;			/* Current directory (root dir) */
 #endif
 	fs->id = ++Fsid;		/* File system mount ID */
-    1c3e:	80 91 b4 01 	lds	r24, 0x01B4
-    1c42:	90 91 b5 01 	lds	r25, 0x01B5
+    1c3e:	80 91 c0 01 	lds	r24, 0x01C0
+    1c42:	90 91 c1 01 	lds	r25, 0x01C1
     1c46:	01 96       	adiw	r24, 0x01	; 1
-    1c48:	90 93 b5 01 	sts	0x01B5, r25
-    1c4c:	80 93 b4 01 	sts	0x01B4, r24
+    1c48:	90 93 c1 01 	sts	0x01C1, r25
+    1c4c:	80 93 c0 01 	sts	0x01C0, r24
     1c50:	97 83       	std	Z+7, r25	; 0x07
     1c52:	86 83       	std	Z+6, r24	; 0x06
 
@@ -5203,8 +5203,8 @@ FRESULT chk_mounted (	/* FR_OK(0): successful, !=0: any error occured */
     1df6:	12 c0       	rjmp	.+36     	; 0x1e1c <f_mount+0x28>
 		return FR_INVALID_DRIVE;
 	rfs = FatFs[vol];				/* Get current fs object */
-    1df8:	e0 91 b6 01 	lds	r30, 0x01B6
-    1dfc:	f0 91 b7 01 	lds	r31, 0x01B7
+    1df8:	e0 91 c2 01 	lds	r30, 0x01C2
+    1dfc:	f0 91 c3 01 	lds	r31, 0x01C3
 
 	if (rfs) {
     1e00:	30 97       	sbiw	r30, 0x00	; 0
@@ -5228,8 +5228,8 @@ FRESULT chk_mounted (	/* FR_OK(0): successful, !=0: any error occured */
 #endif
 	}
 	FatFs[vol] = fs;				/* Register new fs object */
-    1e10:	70 93 b7 01 	sts	0x01B7, r23
-    1e14:	60 93 b6 01 	sts	0x01B6, r22
+    1e10:	70 93 c3 01 	sts	0x01C3, r23
+    1e14:	60 93 c2 01 	sts	0x01C2, r22
 
 	return FR_OK;
     1e18:	80 e0       	ldi	r24, 0x00	; 0
@@ -6711,7 +6711,7 @@ FRESULT f_lseek (
     26ae:	91 09       	sbc	r25, r1
     26b0:	a5 01       	movw	r20, r10
     26b2:	94 01       	movw	r18, r8
-    26b4:	0e 94 80 1b 	call	0x3700	; 0x3700 <__udivmodsi4>
+    26b4:	0e 94 90 1b 	call	0x3720	; 0x3720 <__udivmodsi4>
     26b8:	29 83       	std	Y+1, r18	; 0x01
     26ba:	3a 83       	std	Y+2, r19	; 0x02
     26bc:	4b 83       	std	Y+3, r20	; 0x03
@@ -6720,7 +6720,7 @@ FRESULT f_lseek (
     26c2:	b2 01       	movw	r22, r4
     26c4:	a5 01       	movw	r20, r10
     26c6:	94 01       	movw	r18, r8
-    26c8:	0e 94 80 1b 	call	0x3700	; 0x3700 <__udivmodsi4>
+    26c8:	0e 94 90 1b 	call	0x3720	; 0x3720 <__udivmodsi4>
 
 	ifptr = fp->fptr;
 	fp->fptr = nsect = 0; fp->csect = 255;
@@ -7724,7 +7724,7 @@ void ReadTemp_DS3231(void)
 	//读出温度
 	Temperature_Integer=I2C_ReceiveByte();
     2c40:	0e 94 a1 15 	call	0x2b42	; 0x2b42 <I2C_ReceiveByte>
-    2c44:	80 93 ea 03 	sts	0x03EA, r24
+    2c44:	80 93 f6 03 	sts	0x03F6, r24
 	I2C_Ack();
     2c48:	0e 94 58 15 	call	0x2ab0	; 0x2ab0 <I2C_Ack>
 	Temperature_Decimals=I2C_ReceiveByte()>>6;
@@ -7733,7 +7733,7 @@ void ReadTemp_DS3231(void)
     2c52:	86 95       	lsr	r24
     2c54:	86 95       	lsr	r24
     2c56:	83 70       	andi	r24, 0x03	; 3
-    2c58:	80 93 e9 03 	sts	0x03E9, r24
+    2c58:	80 93 f5 03 	sts	0x03F5, r24
 	I2C_NoAck();
     2c5c:	0e 94 6e 15 	call	0x2adc	; 0x2adc <I2C_NoAck>
 	I2C_Stop();
@@ -7832,7 +7832,7 @@ void Time_DisplayString()
 	ReadTemp_DS3231();
     2cf4:	0e 94 13 16 	call	0x2c26	; 0x2c26 <ReadTemp_DS3231>
 	DS3231_Temperature[0]=(HEX_BCD(Temperature_Integer)>>4)+0x30;
-    2cf8:	80 91 ea 03 	lds	r24, 0x03EA
+    2cf8:	80 91 f6 03 	lds	r24, 0x03F6
     2cfc:	0e 94 b3 15 	call	0x2b66	; 0x2b66 <HEX_BCD>
     2d00:	e0 e0       	ldi	r30, 0x00	; 0
     2d02:	f1 e0       	ldi	r31, 0x01	; 1
@@ -8185,7 +8185,7 @@ int main(void)
     2e98:	71 ee       	ldi	r23, 0xE1	; 225
     2e9a:	80 e0       	ldi	r24, 0x00	; 0
     2e9c:	90 e0       	ldi	r25, 0x00	; 0
-    2e9e:	0e 94 55 1b 	call	0x36aa	; 0x36aa <Serial_Init>
+    2e9e:	0e 94 65 1b 	call	0x36ca	; 0x36ca <Serial_Init>
 	Initialize_DS3231();
     2ea2:	0e 94 c6 15 	call	0x2b8c	; 0x2b8c <Initialize_DS3231>
     2ea6:	2f ef       	ldi	r18, 0xFF	; 255
@@ -8202,21 +8202,21 @@ int main(void)
 	Serial_SendString("Ready!\r\n");
     2eb8:	86 e4       	ldi	r24, 0x46	; 70
     2eba:	91 e0       	ldi	r25, 0x01	; 1
-    2ebc:	0e 94 71 1b 	call	0x36e2	; 0x36e2 <Serial_SendString>
+    2ebc:	0e 94 81 1b 	call	0x3702	; 0x3702 <Serial_SendString>
 	char line[29]; 
 	FIL fil;   	
 	FRESULT fr;   
 	FILINFO fileinfo;
 	fr=f_mount(0,&FatFs);
-    2ec0:	6a eb       	ldi	r22, 0xBA	; 186
+    2ec0:	66 ec       	ldi	r22, 0xC6	; 198
     2ec2:	71 e0       	ldi	r23, 0x01	; 1
     2ec4:	80 e0       	ldi	r24, 0x00	; 0
     2ec6:	0e 94 fa 0e 	call	0x1df4	; 0x1df4 <f_mount>
 	for (i=0;i<5;i++)
     2eca:	19 82       	std	Y+1, r1	; 0x01
 	{
-		fr=f_open(&fil,"/test1.txt",FA_CREATE_ALWAYS|FA_WRITE);
-    2ecc:	4a e0       	ldi	r20, 0x0A	; 10
+		fr=f_open(&fil,"/test1.txt",FA_OPEN_ALWAYS);
+    2ecc:	40 e1       	ldi	r20, 0x10	; 16
     2ece:	6f e4       	ldi	r22, 0x4F	; 79
     2ed0:	71 e0       	ldi	r23, 0x01	; 1
     2ed2:	ce 01       	movw	r24, r28
@@ -8237,1844 +8237,1870 @@ int main(void)
     2ee4:	85 30       	cpi	r24, 0x05	; 5
     2ee6:	90 f3       	brcs	.-28     	; 0x2ecc <main+0x78>
 	{
-		fr=f_open(&fil,"/test1.txt",FA_CREATE_ALWAYS|FA_WRITE);
+		fr=f_open(&fil,"/test1.txt",FA_OPEN_ALWAYS);
 		if (!fr) break;
 	}
 	if (i==5)
     2ee8:	89 81       	ldd	r24, Y+1	; 0x01
     2eea:	85 30       	cpi	r24, 0x05	; 5
-    2eec:	29 f4       	brne	.+10     	; 0x2ef8 <main+0xa4>
+    2eec:	09 f4       	brne	.+2      	; 0x2ef0 <main+0x9c>
+    2eee:	cc c0       	rjmp	.+408    	; 0x3088 <main+0x234>
 	{	
 		Serial_SendString("mount error!");
-    2eee:	8a e5       	ldi	r24, 0x5A	; 90
-    2ef0:	91 e0       	ldi	r25, 0x01	; 1
-    2ef2:	0e 94 71 1b 	call	0x36e2	; 0x36e2 <Serial_SendString>
 		return 0;
-    2ef6:	bc c0       	rjmp	.+376    	; 0x3070 <main+0x21c>
 	}
 	f_close(&fil);
-    2ef8:	ce 01       	movw	r24, r28
-    2efa:	4f 96       	adiw	r24, 0x1f	; 31
-    2efc:	0e 94 e0 12 	call	0x25c0	; 0x25c0 <f_close>
+    2ef0:	ce 01       	movw	r24, r28
+    2ef2:	4f 96       	adiw	r24, 0x1f	; 31
+    2ef4:	0e 94 e0 12 	call	0x25c0	; 0x25c0 <f_close>
 	f_mount(0, NULL);
-    2f00:	60 e0       	ldi	r22, 0x00	; 0
-    2f02:	70 e0       	ldi	r23, 0x00	; 0
-    2f04:	80 e0       	ldi	r24, 0x00	; 0
-    2f06:	0e 94 fa 0e 	call	0x1df4	; 0x1df4 <f_mount>
+    2ef8:	60 e0       	ldi	r22, 0x00	; 0
+    2efa:	70 e0       	ldi	r23, 0x00	; 0
+    2efc:	80 e0       	ldi	r24, 0x00	; 0
+    2efe:	0e 94 fa 0e 	call	0x1df4	; 0x1df4 <f_mount>
 int main(void)
 {
 	DDRD|=(1<<PORTD6);
 	DDRC=0xff;
 	LCDInit();	
 	unsigned char temp1=0,temp2=0,i=0;
-    2f0a:	51 2c       	mov	r5, r1
+    2f02:	51 2c       	mov	r5, r1
 	f_close(&fil);
 	f_mount(0, NULL);
     while(1)
 	{
 		Time_DisplayString();
 		temp1=Time.second;
-    2f0c:	0f 2e       	mov	r0, r31
-    2f0e:	f3 e2       	ldi	r31, 0x23	; 35
-    2f10:	8f 2e       	mov	r8, r31
-    2f12:	f1 e0       	ldi	r31, 0x01	; 1
-    2f14:	9f 2e       	mov	r9, r31
-    2f16:	f0 2d       	mov	r31, r0
-    2f18:	7e 01       	movw	r14, r28
-    2f1a:	e1 e1       	ldi	r30, 0x11	; 17
-    2f1c:	ee 0e       	add	r14, r30
-    2f1e:	f1 1c       	adc	r15, r1
-    2f20:	0f 2e       	mov	r0, r31
-    2f22:	fb e0       	ldi	r31, 0x0B	; 11
-    2f24:	6f 2e       	mov	r6, r31
-    2f26:	f1 e0       	ldi	r31, 0x01	; 1
-    2f28:	7f 2e       	mov	r7, r31
-    2f2a:	f0 2d       	mov	r31, r0
-    2f2c:	6e 01       	movw	r12, r28
-    2f2e:	f9 e1       	ldi	r31, 0x19	; 25
-    2f30:	cf 0e       	add	r12, r31
-    2f32:	d1 1c       	adc	r13, r1
+    2f04:	0f 2e       	mov	r0, r31
+    2f06:	f3 e2       	ldi	r31, 0x23	; 35
+    2f08:	8f 2e       	mov	r8, r31
+    2f0a:	f1 e0       	ldi	r31, 0x01	; 1
+    2f0c:	9f 2e       	mov	r9, r31
+    2f0e:	f0 2d       	mov	r31, r0
+    2f10:	8e 01       	movw	r16, r28
+    2f12:	0f 5e       	subi	r16, 0xEF	; 239
+    2f14:	1f 4f       	sbci	r17, 0xFF	; 255
+    2f16:	0f 2e       	mov	r0, r31
+    2f18:	fb e0       	ldi	r31, 0x0B	; 11
+    2f1a:	6f 2e       	mov	r6, r31
+    2f1c:	f1 e0       	ldi	r31, 0x01	; 1
+    2f1e:	7f 2e       	mov	r7, r31
+    2f20:	f0 2d       	mov	r31, r0
+    2f22:	5e 01       	movw	r10, r28
+    2f24:	e9 e1       	ldi	r30, 0x19	; 25
+    2f26:	ae 0e       	add	r10, r30
+    2f28:	b1 1c       	adc	r11, r1
 			line[28]='\0';
 			Serial_SendString(line);
 			for (i=0;i<5;i++)
 			{	
 				fr=f_mount(0,&FatFs);
 				f_stat("test1.txt",&fileinfo);
-    2f34:	8e 01       	movw	r16, r28
-    2f36:	01 5c       	subi	r16, 0xC1	; 193
-    2f38:	1d 4f       	sbci	r17, 0xFD	; 253
-    2f3a:	30 2e       	mov	r3, r16
-    2f3c:	41 2e       	mov	r4, r17
-    2f3e:	5e 01       	movw	r10, r28
-    2f40:	2e e1       	ldi	r18, 0x1E	; 30
-    2f42:	a2 0e       	add	r10, r18
-    2f44:	b1 1c       	adc	r11, r1
+    2f2a:	7e 01       	movw	r14, r28
+    2f2c:	f1 ec       	ldi	r31, 0xC1	; 193
+    2f2e:	ef 1a       	sub	r14, r31
+    2f30:	fd ef       	ldi	r31, 0xFD	; 253
+    2f32:	ff 0a       	sbc	r15, r31
+    2f34:	3e 2c       	mov	r3, r14
+    2f36:	4f 2c       	mov	r4, r15
+    2f38:	6e 01       	movw	r12, r28
+    2f3a:	2e e1       	ldi	r18, 0x1E	; 30
+    2f3c:	c2 0e       	add	r12, r18
+    2f3e:	d1 1c       	adc	r13, r1
 	}
 	f_close(&fil);
 	f_mount(0, NULL);
     while(1)
 	{
 		Time_DisplayString();
-    2f46:	0e 94 33 16 	call	0x2c66	; 0x2c66 <Time_DisplayString>
+    2f40:	0e 94 33 16 	call	0x2c66	; 0x2c66 <Time_DisplayString>
 		temp1=Time.second;
-    2f4a:	f4 01       	movw	r30, r8
-    2f4c:	26 80       	ldd	r2, Z+6	; 0x06
+    2f44:	f4 01       	movw	r30, r8
+    2f46:	26 80       	ldd	r2, Z+6	; 0x06
 		if (temp1!=temp2)
-    2f4e:	25 14       	cp	r2, r5
-    2f50:	09 f4       	brne	.+2      	; 0x2f54 <main+0x100>
-    2f52:	84 c0       	rjmp	.+264    	; 0x305c <main+0x208>
+    2f48:	25 14       	cp	r2, r5
+    2f4a:	09 f4       	brne	.+2      	; 0x2f4e <main+0xfa>
+    2f4c:	93 c0       	rjmp	.+294    	; 0x3074 <main+0x220>
 		{	
 			line[0]=32;
-    2f54:	80 e2       	ldi	r24, 0x20	; 32
-    2f56:	8a 83       	std	Y+2, r24	; 0x02
-    2f58:	a4 e1       	ldi	r26, 0x14	; 20
-    2f5a:	b1 e0       	ldi	r27, 0x01	; 1
-    2f5c:	fe 01       	movw	r30, r28
-    2f5e:	33 96       	adiw	r30, 0x03	; 3
+    2f4e:	80 e2       	ldi	r24, 0x20	; 32
+    2f50:	8a 83       	std	Y+2, r24	; 0x02
+    2f52:	a4 e1       	ldi	r26, 0x14	; 20
+    2f54:	b1 e0       	ldi	r27, 0x01	; 1
+    2f56:	fe 01       	movw	r30, r28
+    2f58:	33 96       	adiw	r30, 0x03	; 3
 			for(i=0;i<14;i++)
 			{
 				line[i+1]=DS3231_Date[i];
-    2f60:	8d 91       	ld	r24, X+
-    2f62:	81 93       	st	Z+, r24
+    2f5a:	8d 91       	ld	r24, X+
+    2f5c:	81 93       	st	Z+, r24
 		Time_DisplayString();
 		temp1=Time.second;
 		if (temp1!=temp2)
 		{	
 			line[0]=32;
 			for(i=0;i<14;i++)
-    2f64:	ee 15       	cp	r30, r14
-    2f66:	ff 05       	cpc	r31, r15
-    2f68:	d9 f7       	brne	.-10     	; 0x2f60 <main+0x10c>
-    2f6a:	d3 01       	movw	r26, r6
-    2f6c:	f7 01       	movw	r30, r14
+    2f5e:	e0 17       	cp	r30, r16
+    2f60:	f1 07       	cpc	r31, r17
+    2f62:	d9 f7       	brne	.-10     	; 0x2f5a <main+0x106>
+    2f64:	d3 01       	movw	r26, r6
+    2f66:	f8 01       	movw	r30, r16
 			{
 				line[i+1]=DS3231_Date[i];
 			}
 			for(i=0;i<8;i++)
 			{
 				line[i+15]=DS3231_Time[i];
-    2f6e:	8d 91       	ld	r24, X+
-    2f70:	81 93       	st	Z+, r24
+    2f68:	8d 91       	ld	r24, X+
+    2f6a:	81 93       	st	Z+, r24
 			line[0]=32;
 			for(i=0;i<14;i++)
 			{
 				line[i+1]=DS3231_Date[i];
 			}
 			for(i=0;i<8;i++)
-    2f72:	ec 15       	cp	r30, r12
-    2f74:	fd 05       	cpc	r31, r13
-    2f76:	d9 f7       	brne	.-10     	; 0x2f6e <main+0x11a>
-    2f78:	88 e0       	ldi	r24, 0x08	; 8
-    2f7a:	89 83       	std	Y+1, r24	; 0x01
+    2f6c:	ea 15       	cp	r30, r10
+    2f6e:	fb 05       	cpc	r31, r11
+    2f70:	d9 f7       	brne	.-10     	; 0x2f68 <main+0x114>
+    2f72:	88 e0       	ldi	r24, 0x08	; 8
+    2f74:	89 83       	std	Y+1, r24	; 0x01
 			{
 				line[i+15]=DS3231_Time[i];
 			}
 			line[23]=32;
-    2f7c:	80 e2       	ldi	r24, 0x20	; 32
-    2f7e:	89 8f       	std	Y+25, r24	; 0x19
+    2f76:	80 e2       	ldi	r24, 0x20	; 32
+    2f78:	89 8f       	std	Y+25, r24	; 0x19
 			line[24]=DS3231_Temperature[0];
-    2f80:	e0 e0       	ldi	r30, 0x00	; 0
-    2f82:	f1 e0       	ldi	r31, 0x01	; 1
-    2f84:	80 81       	ld	r24, Z
-    2f86:	8a 8f       	std	Y+26, r24	; 0x1a
+    2f7a:	e0 e0       	ldi	r30, 0x00	; 0
+    2f7c:	f1 e0       	ldi	r31, 0x01	; 1
+    2f7e:	80 81       	ld	r24, Z
+    2f80:	8a 8f       	std	Y+26, r24	; 0x1a
 			line[25]=DS3231_Temperature[1];
-    2f88:	81 81       	ldd	r24, Z+1	; 0x01
-    2f8a:	8b 8f       	std	Y+27, r24	; 0x1b
+    2f82:	81 81       	ldd	r24, Z+1	; 0x01
+    2f84:	8b 8f       	std	Y+27, r24	; 0x1b
 			line[26]='\r';
-    2f8c:	8d e0       	ldi	r24, 0x0D	; 13
-    2f8e:	8c 8f       	std	Y+28, r24	; 0x1c
+    2f86:	8d e0       	ldi	r24, 0x0D	; 13
+    2f88:	8c 8f       	std	Y+28, r24	; 0x1c
 			line[27]='\n';
-    2f90:	8a e0       	ldi	r24, 0x0A	; 10
-    2f92:	8d 8f       	std	Y+29, r24	; 0x1d
+    2f8a:	8a e0       	ldi	r24, 0x0A	; 10
+    2f8c:	8d 8f       	std	Y+29, r24	; 0x1d
 			line[28]='\0';
-    2f94:	1e 8e       	std	Y+30, r1	; 0x1e
+    2f8e:	1e 8e       	std	Y+30, r1	; 0x1e
 			Serial_SendString(line);
-    2f96:	ce 01       	movw	r24, r28
-    2f98:	02 96       	adiw	r24, 0x02	; 2
-    2f9a:	0e 94 71 1b 	call	0x36e2	; 0x36e2 <Serial_SendString>
+    2f90:	ce 01       	movw	r24, r28
+    2f92:	02 96       	adiw	r24, 0x02	; 2
+    2f94:	0e 94 81 1b 	call	0x3702	; 0x3702 <Serial_SendString>
 			for (i=0;i<5;i++)
-    2f9e:	19 82       	std	Y+1, r1	; 0x01
+    2f98:	19 82       	std	Y+1, r1	; 0x01
 			{	
 				fr=f_mount(0,&FatFs);
-    2fa0:	6a eb       	ldi	r22, 0xBA	; 186
-    2fa2:	71 e0       	ldi	r23, 0x01	; 1
-    2fa4:	80 e0       	ldi	r24, 0x00	; 0
-    2fa6:	0e 94 fa 0e 	call	0x1df4	; 0x1df4 <f_mount>
+    2f9a:	66 ec       	ldi	r22, 0xC6	; 198
+    2f9c:	71 e0       	ldi	r23, 0x01	; 1
+    2f9e:	80 e0       	ldi	r24, 0x00	; 0
+    2fa0:	0e 94 fa 0e 	call	0x1df4	; 0x1df4 <f_mount>
 				f_stat("test1.txt",&fileinfo);
-    2faa:	63 2d       	mov	r22, r3
-    2fac:	74 2d       	mov	r23, r4
-    2fae:	80 e5       	ldi	r24, 0x50	; 80
-    2fb0:	91 e0       	ldi	r25, 0x01	; 1
-    2fb2:	0e 94 f7 14 	call	0x29ee	; 0x29ee <f_stat>
+    2fa4:	63 2d       	mov	r22, r3
+    2fa6:	74 2d       	mov	r23, r4
+    2fa8:	80 e5       	ldi	r24, 0x50	; 80
+    2faa:	91 e0       	ldi	r25, 0x01	; 1
+    2fac:	0e 94 f7 14 	call	0x29ee	; 0x29ee <f_stat>
 				fr=f_open(&fil,"/test1.txt",FA_WRITE);				
-    2fb6:	42 e0       	ldi	r20, 0x02	; 2
-    2fb8:	6f e4       	ldi	r22, 0x4F	; 79
-    2fba:	71 e0       	ldi	r23, 0x01	; 1
-    2fbc:	ce 01       	movw	r24, r28
-    2fbe:	4f 96       	adiw	r24, 0x1f	; 31
-    2fc0:	0e 94 10 0f 	call	0x1e20	; 0x1e20 <f_open>
-    2fc4:	58 2e       	mov	r5, r24
+    2fb0:	42 e0       	ldi	r20, 0x02	; 2
+    2fb2:	6f e4       	ldi	r22, 0x4F	; 79
+    2fb4:	71 e0       	ldi	r23, 0x01	; 1
+    2fb6:	ce 01       	movw	r24, r28
+    2fb8:	4f 96       	adiw	r24, 0x1f	; 31
+    2fba:	0e 94 10 0f 	call	0x1e20	; 0x1e20 <f_open>
+    2fbe:	58 2e       	mov	r5, r24
 				f_lseek(&fil,fileinfo.fsize);
-    2fc6:	f8 01       	movw	r30, r16
-    2fc8:	40 81       	ld	r20, Z
-    2fca:	51 81       	ldd	r21, Z+1	; 0x01
-    2fcc:	62 81       	ldd	r22, Z+2	; 0x02
-    2fce:	73 81       	ldd	r23, Z+3	; 0x03
-    2fd0:	ce 01       	movw	r24, r28
-    2fd2:	4f 96       	adiw	r24, 0x1f	; 31
-    2fd4:	0e 94 ec 12 	call	0x25d8	; 0x25d8 <f_lseek>
+    2fc0:	f7 01       	movw	r30, r14
+    2fc2:	40 81       	ld	r20, Z
+    2fc4:	51 81       	ldd	r21, Z+1	; 0x01
+    2fc6:	62 81       	ldd	r22, Z+2	; 0x02
+    2fc8:	73 81       	ldd	r23, Z+3	; 0x03
+    2fca:	ce 01       	movw	r24, r28
+    2fcc:	4f 96       	adiw	r24, 0x1f	; 31
+    2fce:	0e 94 ec 12 	call	0x25d8	; 0x25d8 <f_lseek>
 				if (!fr)
-    2fd8:	51 10       	cpse	r5, r1
-    2fda:	29 c0       	rjmp	.+82     	; 0x302e <main+0x1da>
+    2fd2:	51 10       	cpse	r5, r1
+    2fd4:	30 c0       	rjmp	.+96     	; 0x3036 <main+0x1e2>
 				{
 					fr=f_write(&fil,line,27,&i);
-    2fdc:	9e 01       	movw	r18, r28
-    2fde:	2f 5f       	subi	r18, 0xFF	; 255
-    2fe0:	3f 4f       	sbci	r19, 0xFF	; 255
-    2fe2:	4b e1       	ldi	r20, 0x1B	; 27
-    2fe4:	50 e0       	ldi	r21, 0x00	; 0
-    2fe6:	be 01       	movw	r22, r28
-    2fe8:	6e 5f       	subi	r22, 0xFE	; 254
-    2fea:	7f 4f       	sbci	r23, 0xFF	; 255
-    2fec:	ce 01       	movw	r24, r28
-    2fee:	4f 96       	adiw	r24, 0x1f	; 31
-    2ff0:	0e 94 76 10 	call	0x20ec	; 0x20ec <f_write>
+    2fd6:	9e 01       	movw	r18, r28
+    2fd8:	2f 5f       	subi	r18, 0xFF	; 255
+    2fda:	3f 4f       	sbci	r19, 0xFF	; 255
+    2fdc:	4b e1       	ldi	r20, 0x1B	; 27
+    2fde:	50 e0       	ldi	r21, 0x00	; 0
+    2fe0:	be 01       	movw	r22, r28
+    2fe2:	6e 5f       	subi	r22, 0xFE	; 254
+    2fe4:	7f 4f       	sbci	r23, 0xFF	; 255
+    2fe6:	ce 01       	movw	r24, r28
+    2fe8:	4f 96       	adiw	r24, 0x1f	; 31
+    2fea:	0e 94 76 10 	call	0x20ec	; 0x20ec <f_write>
 					if (!fr)
-    2ff4:	81 11       	cpse	r24, r1
-    2ff6:	06 c0       	rjmp	.+12     	; 0x3004 <main+0x1b0>
+    2fee:	81 11       	cpse	r24, r1
+    2ff0:	07 c0       	rjmp	.+14     	; 0x3000 <main+0x1ac>
 					{
 						putstr(20,7,"Write OK!");
-    2ff8:	47 e6       	ldi	r20, 0x67	; 103
-    2ffa:	51 e0       	ldi	r21, 0x01	; 1
-    2ffc:	67 e0       	ldi	r22, 0x07	; 7
-    2ffe:	84 e1       	ldi	r24, 0x14	; 20
-    3000:	0e 94 0c 17 	call	0x2e18	; 0x2e18 <putstr>
+    2ff2:	47 e6       	ldi	r20, 0x67	; 103
+    2ff4:	51 e0       	ldi	r21, 0x01	; 1
+    2ff6:	67 e0       	ldi	r22, 0x07	; 7
+    2ff8:	84 e1       	ldi	r24, 0x14	; 20
+    2ffa:	0e 94 0c 17 	call	0x2e18	; 0x2e18 <putstr>
+    2ffe:	06 c0       	rjmp	.+12     	; 0x300c <main+0x1b8>
+					}
+					else
+					{
+						putstr(16,7,"Write Error!");
+    3000:	41 e7       	ldi	r20, 0x71	; 113
+    3002:	51 e0       	ldi	r21, 0x01	; 1
+    3004:	67 e0       	ldi	r22, 0x07	; 7
+    3006:	80 e1       	ldi	r24, 0x10	; 16
+    3008:	0e 94 0c 17 	call	0x2e18	; 0x2e18 <putstr>
 					}
 					f_close(&fil);
-    3004:	ce 01       	movw	r24, r28
-    3006:	4f 96       	adiw	r24, 0x1f	; 31
-    3008:	0e 94 e0 12 	call	0x25c0	; 0x25c0 <f_close>
+    300c:	ce 01       	movw	r24, r28
+    300e:	4f 96       	adiw	r24, 0x1f	; 31
+    3010:	0e 94 e0 12 	call	0x25c0	; 0x25c0 <f_close>
 					f_mount(0, NULL);
-    300c:	60 e0       	ldi	r22, 0x00	; 0
-    300e:	70 e0       	ldi	r23, 0x00	; 0
-    3010:	80 e0       	ldi	r24, 0x00	; 0
-    3012:	0e 94 fa 0e 	call	0x1df4	; 0x1df4 <f_mount>
+    3014:	60 e0       	ldi	r22, 0x00	; 0
+    3016:	70 e0       	ldi	r23, 0x00	; 0
+    3018:	80 e0       	ldi	r24, 0x00	; 0
+    301a:	0e 94 fa 0e 	call	0x1df4	; 0x1df4 <f_mount>
 					putstr(20,4,DS3231_Time);
-    3016:	a3 01       	movw	r20, r6
-    3018:	64 e0       	ldi	r22, 0x04	; 4
-    301a:	84 e1       	ldi	r24, 0x14	; 20
-    301c:	0e 94 0c 17 	call	0x2e18	; 0x2e18 <putstr>
+    301e:	a3 01       	movw	r20, r6
+    3020:	64 e0       	ldi	r22, 0x04	; 4
+    3022:	84 e1       	ldi	r24, 0x14	; 20
+    3024:	0e 94 0c 17 	call	0x2e18	; 0x2e18 <putstr>
 					putstr(40,2,DS3231_Temperature);
-    3020:	40 e0       	ldi	r20, 0x00	; 0
-    3022:	51 e0       	ldi	r21, 0x01	; 1
-    3024:	62 e0       	ldi	r22, 0x02	; 2
-    3026:	88 e2       	ldi	r24, 0x28	; 40
-    3028:	0e 94 0c 17 	call	0x2e18	; 0x2e18 <putstr>
+    3028:	40 e0       	ldi	r20, 0x00	; 0
+    302a:	51 e0       	ldi	r21, 0x01	; 1
+    302c:	62 e0       	ldi	r22, 0x02	; 2
+    302e:	88 e2       	ldi	r24, 0x28	; 40
+    3030:	0e 94 0c 17 	call	0x2e18	; 0x2e18 <putstr>
 					break;
-    302c:	06 c0       	rjmp	.+12     	; 0x303a <main+0x1e6>
+    3034:	0f c0       	rjmp	.+30     	; 0x3054 <main+0x200>
+				}
+				f_close(&fil);
+    3036:	ce 01       	movw	r24, r28
+    3038:	4f 96       	adiw	r24, 0x1f	; 31
+    303a:	0e 94 e0 12 	call	0x25c0	; 0x25c0 <f_close>
+				f_mount(0, NULL);
+    303e:	60 e0       	ldi	r22, 0x00	; 0
+    3040:	70 e0       	ldi	r23, 0x00	; 0
+    3042:	80 e0       	ldi	r24, 0x00	; 0
+    3044:	0e 94 fa 0e 	call	0x1df4	; 0x1df4 <f_mount>
 			line[25]=DS3231_Temperature[1];
 			line[26]='\r';
 			line[27]='\n';
 			line[28]='\0';
 			Serial_SendString(line);
 			for (i=0;i<5;i++)
-    302e:	89 81       	ldd	r24, Y+1	; 0x01
-    3030:	8f 5f       	subi	r24, 0xFF	; 255
-    3032:	89 83       	std	Y+1, r24	; 0x01
-    3034:	85 30       	cpi	r24, 0x05	; 5
-    3036:	08 f4       	brcc	.+2      	; 0x303a <main+0x1e6>
-    3038:	b3 cf       	rjmp	.-154    	; 0x2fa0 <main+0x14c>
-					putstr(20,4,DS3231_Time);
-					putstr(40,2,DS3231_Temperature);
+    3048:	89 81       	ldd	r24, Y+1	; 0x01
+    304a:	8f 5f       	subi	r24, 0xFF	; 255
+    304c:	89 83       	std	Y+1, r24	; 0x01
+    304e:	85 30       	cpi	r24, 0x05	; 5
+    3050:	08 f4       	brcc	.+2      	; 0x3054 <main+0x200>
+    3052:	a3 cf       	rjmp	.-186    	; 0x2f9a <main+0x146>
 					break;
 				}
+				f_close(&fil);
+				f_mount(0, NULL);
 			}
 			if (i==5)
-    303a:	89 81       	ldd	r24, Y+1	; 0x01
-    303c:	85 30       	cpi	r24, 0x05	; 5
-    303e:	29 f4       	brne	.+10     	; 0x304a <main+0x1f6>
+    3054:	89 81       	ldd	r24, Y+1	; 0x01
+    3056:	85 30       	cpi	r24, 0x05	; 5
+    3058:	21 f4       	brne	.+8      	; 0x3062 <main+0x20e>
 			{
 				Serial_SendString("mount error!");
-    3040:	8a e5       	ldi	r24, 0x5A	; 90
-    3042:	91 e0       	ldi	r25, 0x01	; 1
-    3044:	0e 94 71 1b 	call	0x36e2	; 0x36e2 <Serial_SendString>
-				return 0;
-    3048:	13 c0       	rjmp	.+38     	; 0x3070 <main+0x21c>
-    304a:	fe 01       	movw	r30, r28
-    304c:	32 96       	adiw	r30, 0x02	; 2
+    305a:	8a e5       	ldi	r24, 0x5A	; 90
+    305c:	91 e0       	ldi	r25, 0x01	; 1
+    305e:	0e 94 81 1b 	call	0x3702	; 0x3702 <Serial_SendString>
+    3062:	fe 01       	movw	r30, r28
+    3064:	32 96       	adiw	r30, 0x02	; 2
+				//return 0;
 			}							
 			for (i=0;i<28;i++)
 			{
 				line[i]=0;
-    304e:	11 92       	st	Z+, r1
+    3066:	11 92       	st	Z+, r1
 			if (i==5)
 			{
 				Serial_SendString("mount error!");
-				return 0;
+				//return 0;
 			}							
 			for (i=0;i<28;i++)
-    3050:	ea 15       	cp	r30, r10
-    3052:	fb 05       	cpc	r31, r11
-    3054:	e1 f7       	brne	.-8      	; 0x304e <main+0x1fa>
-    3056:	8c e1       	ldi	r24, 0x1C	; 28
-    3058:	89 83       	std	Y+1, r24	; 0x01
+    3068:	ec 15       	cp	r30, r12
+    306a:	fd 05       	cpc	r31, r13
+    306c:	e1 f7       	brne	.-8      	; 0x3066 <main+0x212>
+    306e:	8c e1       	ldi	r24, 0x1C	; 28
+    3070:	89 83       	std	Y+1, r24	; 0x01
 			{
 				line[i]=0;
 			}						
 			temp2=temp1;
-    305a:	52 2c       	mov	r5, r2
-    305c:	ff ef       	ldi	r31, 0xFF	; 255
-    305e:	23 ec       	ldi	r18, 0xC3	; 195
-    3060:	89 e0       	ldi	r24, 0x09	; 9
-    3062:	f1 50       	subi	r31, 0x01	; 1
-    3064:	20 40       	sbci	r18, 0x00	; 0
-    3066:	80 40       	sbci	r24, 0x00	; 0
-    3068:	e1 f7       	brne	.-8      	; 0x3062 <main+0x20e>
-    306a:	00 c0       	rjmp	.+0      	; 0x306c <main+0x218>
-    306c:	00 00       	nop
-    306e:	6b cf       	rjmp	.-298    	; 0x2f46 <main+0xf2>
+    3072:	52 2c       	mov	r5, r2
+    3074:	ff ef       	ldi	r31, 0xFF	; 255
+    3076:	23 ec       	ldi	r18, 0xC3	; 195
+    3078:	89 e0       	ldi	r24, 0x09	; 9
+    307a:	f1 50       	subi	r31, 0x01	; 1
+    307c:	20 40       	sbci	r18, 0x00	; 0
+    307e:	80 40       	sbci	r24, 0x00	; 0
+    3080:	e1 f7       	brne	.-8      	; 0x307a <main+0x226>
+    3082:	00 c0       	rjmp	.+0      	; 0x3084 <main+0x230>
+    3084:	00 00       	nop
+    3086:	5c cf       	rjmp	.-328    	; 0x2f40 <main+0xec>
+		fr=f_open(&fil,"/test1.txt",FA_OPEN_ALWAYS);
+		if (!fr) break;
+	}
+	if (i==5)
+	{	
+		Serial_SendString("mount error!");
+    3088:	8a e5       	ldi	r24, 0x5A	; 90
+    308a:	91 e0       	ldi	r25, 0x01	; 1
+    308c:	0e 94 81 1b 	call	0x3702	; 0x3702 <Serial_SendString>
 		_delay_ms(200);
 	}
 	f_close(&fil);
 	f_mount(0, NULL);
 	return 0;
 }
-    3070:	80 e0       	ldi	r24, 0x00	; 0
-    3072:	90 e0       	ldi	r25, 0x00	; 0
-    3074:	cc 5a       	subi	r28, 0xAC	; 172
-    3076:	dd 4f       	sbci	r29, 0xFD	; 253
-    3078:	0f b6       	in	r0, 0x3f	; 63
-    307a:	f8 94       	cli
-    307c:	de bf       	out	0x3e, r29	; 62
-    307e:	0f be       	out	0x3f, r0	; 63
-    3080:	cd bf       	out	0x3d, r28	; 61
-    3082:	df 91       	pop	r29
-    3084:	cf 91       	pop	r28
-    3086:	1f 91       	pop	r17
-    3088:	0f 91       	pop	r16
-    308a:	ff 90       	pop	r15
-    308c:	ef 90       	pop	r14
-    308e:	df 90       	pop	r13
-    3090:	cf 90       	pop	r12
-    3092:	bf 90       	pop	r11
-    3094:	af 90       	pop	r10
-    3096:	9f 90       	pop	r9
-    3098:	8f 90       	pop	r8
-    309a:	7f 90       	pop	r7
-    309c:	6f 90       	pop	r6
-    309e:	5f 90       	pop	r5
-    30a0:	4f 90       	pop	r4
-    30a2:	3f 90       	pop	r3
-    30a4:	2f 90       	pop	r2
-    30a6:	08 95       	ret
+    3090:	80 e0       	ldi	r24, 0x00	; 0
+    3092:	90 e0       	ldi	r25, 0x00	; 0
+    3094:	cc 5a       	subi	r28, 0xAC	; 172
+    3096:	dd 4f       	sbci	r29, 0xFD	; 253
+    3098:	0f b6       	in	r0, 0x3f	; 63
+    309a:	f8 94       	cli
+    309c:	de bf       	out	0x3e, r29	; 62
+    309e:	0f be       	out	0x3f, r0	; 63
+    30a0:	cd bf       	out	0x3d, r28	; 61
+    30a2:	df 91       	pop	r29
+    30a4:	cf 91       	pop	r28
+    30a6:	1f 91       	pop	r17
+    30a8:	0f 91       	pop	r16
+    30aa:	ff 90       	pop	r15
+    30ac:	ef 90       	pop	r14
+    30ae:	df 90       	pop	r13
+    30b0:	cf 90       	pop	r12
+    30b2:	bf 90       	pop	r11
+    30b4:	af 90       	pop	r10
+    30b6:	9f 90       	pop	r9
+    30b8:	8f 90       	pop	r8
+    30ba:	7f 90       	pop	r7
+    30bc:	6f 90       	pop	r6
+    30be:	5f 90       	pop	r5
+    30c0:	4f 90       	pop	r4
+    30c2:	3f 90       	pop	r3
+    30c4:	2f 90       	pop	r2
+    30c6:	08 95       	ret
 
-000030a8 <SPI_Low>:
+000030c8 <SPI_Low>:
 
 unsigned char SD_Type=0 ;
 
 void SPI_Low(void)		
 {//SPI低速模式
 	SPCR = 0;
-    30a8:	1c bc       	out	0x2c, r1	; 44
+    30c8:	1c bc       	out	0x2c, r1	; 44
 	SPCR = (1 << SPE) | (1 << MSTR) | (1 << SPR0) | (1 << SPR1);
-    30aa:	83 e5       	ldi	r24, 0x53	; 83
-    30ac:	8c bd       	out	0x2c, r24	; 44
+    30ca:	83 e5       	ldi	r24, 0x53	; 83
+    30cc:	8c bd       	out	0x2c, r24	; 44
 	SPSR &= ~(1 << SPI2X);
-    30ae:	8d b5       	in	r24, 0x2d	; 45
-    30b0:	8e 7f       	andi	r24, 0xFE	; 254
-    30b2:	8d bd       	out	0x2d, r24	; 45
-    30b4:	08 95       	ret
+    30ce:	8d b5       	in	r24, 0x2d	; 45
+    30d0:	8e 7f       	andi	r24, 0xFE	; 254
+    30d2:	8d bd       	out	0x2d, r24	; 45
+    30d4:	08 95       	ret
 
-000030b6 <SPI_High>:
+000030d6 <SPI_High>:
 	//使能SPI,主机方式,MSB在前,模式0,128分频
 }
 
 void SPI_High(void)
 {//SPI高速模式
 	SPCR = 0;
-    30b6:	1c bc       	out	0x2c, r1	; 44
+    30d6:	1c bc       	out	0x2c, r1	; 44
 	SPCR = (1 << SPE) | (1 << MSTR);
-    30b8:	80 e5       	ldi	r24, 0x50	; 80
-    30ba:	8c bd       	out	0x2c, r24	; 44
+    30d8:	80 e5       	ldi	r24, 0x50	; 80
+    30da:	8c bd       	out	0x2c, r24	; 44
 	SPSR |= (1 << SPI2X);
-    30bc:	8d b5       	in	r24, 0x2d	; 45
-    30be:	81 60       	ori	r24, 0x01	; 1
-    30c0:	8d bd       	out	0x2d, r24	; 45
-    30c2:	08 95       	ret
+    30dc:	8d b5       	in	r24, 0x2d	; 45
+    30de:	81 60       	ori	r24, 0x01	; 1
+    30e0:	8d bd       	out	0x2d, r24	; 45
+    30e2:	08 95       	ret
 
-000030c4 <SPI_Init>:
+000030e4 <SPI_Init>:
 }
 
 
 void SPI_Init(void)
 {//SPI初始化
 	PORT_SPI |= (1 << SPI_SS) | (1 << SPI_MISO);		//将SS置位输出拉高,MISO输入带上拉
-    30c4:	85 b1       	in	r24, 0x05	; 5
-    30c6:	84 61       	ori	r24, 0x14	; 20
-    30c8:	85 b9       	out	0x05, r24	; 5
+    30e4:	85 b1       	in	r24, 0x05	; 5
+    30e6:	84 61       	ori	r24, 0x14	; 20
+    30e8:	85 b9       	out	0x05, r24	; 5
 	DDR_SPI &= ~((1 << SPI_SS) | (1 << SPI_MOSI) | (1 << SPI_MISO)| (1 << SPI_SCK));
-    30ca:	84 b1       	in	r24, 0x04	; 4
-    30cc:	83 7c       	andi	r24, 0xC3	; 195
-    30ce:	84 b9       	out	0x04, r24	; 4
+    30ea:	84 b1       	in	r24, 0x04	; 4
+    30ec:	83 7c       	andi	r24, 0xC3	; 195
+    30ee:	84 b9       	out	0x04, r24	; 4
 	DDR_SPI |= (1 << SPI_SS) | (1 << SPI_MOSI) | (1 << SPI_SCK);
-    30d0:	84 b1       	in	r24, 0x04	; 4
-    30d2:	8c 62       	ori	r24, 0x2C	; 44
-    30d4:	84 b9       	out	0x04, r24	; 4
-    30d6:	08 95       	ret
+    30f0:	84 b1       	in	r24, 0x04	; 4
+    30f2:	8c 62       	ori	r24, 0x2C	; 44
+    30f4:	84 b9       	out	0x04, r24	; 4
+    30f6:	08 95       	ret
 
-000030d8 <SPI_RW>:
+000030f8 <SPI_RW>:
 }
 
 
 unsigned char SPI_RW(unsigned char dat)
 {
 	SPDR = dat;
-    30d8:	8e bd       	out	0x2e, r24	; 46
+    30f8:	8e bd       	out	0x2e, r24	; 46
 	while(!(SPSR & (1 << SPIF)))
-    30da:	0d b4       	in	r0, 0x2d	; 45
-    30dc:	07 fe       	sbrs	r0, 7
-    30de:	fd cf       	rjmp	.-6      	; 0x30da <SPI_RW+0x2>
+    30fa:	0d b4       	in	r0, 0x2d	; 45
+    30fc:	07 fe       	sbrs	r0, 7
+    30fe:	fd cf       	rjmp	.-6      	; 0x30fa <SPI_RW+0x2>
 		;
 	return (SPDR);
-    30e0:	8e b5       	in	r24, 0x2e	; 46
+    3100:	8e b5       	in	r24, 0x2e	; 46
 }
-    30e2:	08 95       	ret
+    3102:	08 95       	ret
 
-000030e4 <SD_Write_Command>:
+00003104 <SD_Write_Command>:
 //****************************************************************************
 //Send a Command to MMC/SD-Card
 //Return: the second byte of response register of MMC/SD-Card
 //****************************************************************************
 unsigned char SD_Write_Command(unsigned char cmd,unsigned long arg)
 {
-    30e4:	ff 92       	push	r15
-    30e6:	0f 93       	push	r16
-    30e8:	1f 93       	push	r17
-    30ea:	cf 93       	push	r28
-    30ec:	df 93       	push	r29
-    30ee:	f8 2e       	mov	r15, r24
-    30f0:	c4 2f       	mov	r28, r20
-    30f2:	d5 2f       	mov	r29, r21
-    30f4:	16 2f       	mov	r17, r22
-    30f6:	07 2f       	mov	r16, r23
+    3104:	ff 92       	push	r15
+    3106:	0f 93       	push	r16
+    3108:	1f 93       	push	r17
+    310a:	cf 93       	push	r28
+    310c:	df 93       	push	r29
+    310e:	f8 2e       	mov	r15, r24
+    3110:	c4 2f       	mov	r28, r20
+    3112:	d5 2f       	mov	r29, r21
+    3114:	16 2f       	mov	r17, r22
+    3116:	07 2f       	mov	r16, r23
 	unsigned char tmp;
 	unsigned char retry=0;
 	
 	SD_CS_H;   //关闭SD卡
-    30f8:	2a 9a       	sbi	0x05, 2	; 5
+    3118:	2a 9a       	sbi	0x05, 2	; 5
 	SPI_RW(0xff);
-    30fa:	8f ef       	ldi	r24, 0xFF	; 255
-    30fc:	0e 94 6c 18 	call	0x30d8	; 0x30d8 <SPI_RW>
+    311a:	8f ef       	ldi	r24, 0xFF	; 255
+    311c:	0e 94 7c 18 	call	0x30f8	; 0x30f8 <SPI_RW>
 	SD_CS_L;
-    3100:	2a 98       	cbi	0x05, 2	; 5
+    3120:	2a 98       	cbi	0x05, 2	; 5
 	SPI_RW(cmd|0x40);   //送头命令
-    3102:	8f 2d       	mov	r24, r15
-    3104:	80 64       	ori	r24, 0x40	; 64
-    3106:	0e 94 6c 18 	call	0x30d8	; 0x30d8 <SPI_RW>
+    3122:	8f 2d       	mov	r24, r15
+    3124:	80 64       	ori	r24, 0x40	; 64
+    3126:	0e 94 7c 18 	call	0x30f8	; 0x30f8 <SPI_RW>
 	SPI_RW(arg>>24);  //最高的8位
-    310a:	80 2f       	mov	r24, r16
-    310c:	0e 94 6c 18 	call	0x30d8	; 0x30d8 <SPI_RW>
+    312a:	80 2f       	mov	r24, r16
+    312c:	0e 94 7c 18 	call	0x30f8	; 0x30f8 <SPI_RW>
 	SPI_RW(arg>>16);   //send 6 Byte Command to MMC/SD-Card
-    3110:	81 2f       	mov	r24, r17
-    3112:	0e 94 6c 18 	call	0x30d8	; 0x30d8 <SPI_RW>
+    3130:	81 2f       	mov	r24, r17
+    3132:	0e 94 7c 18 	call	0x30f8	; 0x30f8 <SPI_RW>
 	SPI_RW(arg>>8);
-    3116:	8d 2f       	mov	r24, r29
-    3118:	0e 94 6c 18 	call	0x30d8	; 0x30d8 <SPI_RW>
+    3136:	8d 2f       	mov	r24, r29
+    3138:	0e 94 7c 18 	call	0x30f8	; 0x30f8 <SPI_RW>
 	SPI_RW(arg&0xff);
-    311c:	8c 2f       	mov	r24, r28
-    311e:	0e 94 6c 18 	call	0x30d8	; 0x30d8 <SPI_RW>
+    313c:	8c 2f       	mov	r24, r28
+    313e:	0e 94 7c 18 	call	0x30f8	; 0x30f8 <SPI_RW>
 	SPI_RW(0x95);      //仅仅对RESET有效的CRC效验码
-    3122:	85 e9       	ldi	r24, 0x95	; 149
-    3124:	0e 94 6c 18 	call	0x30d8	; 0x30d8 <SPI_RW>
-    3128:	c4 e6       	ldi	r28, 0x64	; 100
+    3142:	85 e9       	ldi	r24, 0x95	; 149
+    3144:	0e 94 7c 18 	call	0x30f8	; 0x30f8 <SPI_RW>
+    3148:	c4 e6       	ldi	r28, 0x64	; 100
 		//get 8 bit response 
 
 	do
 	{
 		tmp = SPI_RW(0XFF);
-    312a:	8f ef       	ldi	r24, 0xFF	; 255
-    312c:	0e 94 6c 18 	call	0x30d8	; 0x30d8 <SPI_RW>
+    314a:	8f ef       	ldi	r24, 0xFF	; 255
+    314c:	0e 94 7c 18 	call	0x30f8	; 0x30f8 <SPI_RW>
 		retry++;
 	}while((tmp==0xff)&&(retry<100));
-    3130:	8f 3f       	cpi	r24, 0xFF	; 255
-    3132:	11 f4       	brne	.+4      	; 0x3138 <SD_Write_Command+0x54>
-    3134:	c1 50       	subi	r28, 0x01	; 1
-    3136:	c9 f7       	brne	.-14     	; 0x312a <SD_Write_Command+0x46>
+    3150:	8f 3f       	cpi	r24, 0xFF	; 255
+    3152:	11 f4       	brne	.+4      	; 0x3158 <SD_Write_Command+0x54>
+    3154:	c1 50       	subi	r28, 0x01	; 1
+    3156:	c9 f7       	brne	.-14     	; 0x314a <SD_Write_Command+0x46>
 
 	if(reading==0) SD_CS_H;
-    3138:	90 91 b9 01 	lds	r25, 0x01B9
-    313c:	91 11       	cpse	r25, r1
-    313e:	02 c0       	rjmp	.+4      	; 0x3144 <SD_Write_Command+0x60>
-    3140:	2a 9a       	sbi	0x05, 2	; 5
-    3142:	01 c0       	rjmp	.+2      	; 0x3146 <SD_Write_Command+0x62>
+    3158:	90 91 c5 01 	lds	r25, 0x01C5
+    315c:	91 11       	cpse	r25, r1
+    315e:	02 c0       	rjmp	.+4      	; 0x3164 <SD_Write_Command+0x60>
+    3160:	2a 9a       	sbi	0x05, 2	; 5
+    3162:	01 c0       	rjmp	.+2      	; 0x3166 <SD_Write_Command+0x62>
 	else
 	SD_CS_L;
-    3144:	2a 98       	cbi	0x05, 2	; 5
+    3164:	2a 98       	cbi	0x05, 2	; 5
 	return(tmp);
 
 		
 }
-    3146:	df 91       	pop	r29
-    3148:	cf 91       	pop	r28
-    314a:	1f 91       	pop	r17
-    314c:	0f 91       	pop	r16
-    314e:	ff 90       	pop	r15
-    3150:	08 95       	ret
+    3166:	df 91       	pop	r29
+    3168:	cf 91       	pop	r28
+    316a:	1f 91       	pop	r17
+    316c:	0f 91       	pop	r16
+    316e:	ff 90       	pop	r15
+    3170:	08 95       	ret
 
-00003152 <SD_Init>:
+00003172 <SD_Init>:
 
 //****************************************************************************
 //SD卡初始化(SPI-MODE)
 //****************************************************************************
 unsigned char SD_Init(void)
 {
-    3152:	0f 93       	push	r16
-    3154:	1f 93       	push	r17
-    3156:	cf 93       	push	r28
+    3172:	0f 93       	push	r16
+    3174:	1f 93       	push	r17
+    3176:	cf 93       	push	r28
 
 	unsigned char i,temp;
     unsigned int retry; 
 	
 
 	SPI_Init();
-    3158:	0e 94 62 18 	call	0x30c4	; 0x30c4 <SPI_Init>
+    3178:	0e 94 72 18 	call	0x30e4	; 0x30e4 <SPI_Init>
 	SPI_Low();
-    315c:	0e 94 54 18 	call	0x30a8	; 0x30a8 <SPI_Low>
+    317c:	0e 94 64 18 	call	0x30c8	; 0x30c8 <SPI_Low>
 
 	SD_CS_L;
-    3160:	2a 98       	cbi	0x05, 2	; 5
-    3162:	8f e9       	ldi	r24, 0x9F	; 159
-    3164:	9f e0       	ldi	r25, 0x0F	; 15
-    3166:	01 97       	sbiw	r24, 0x01	; 1
-    3168:	f1 f7       	brne	.-4      	; 0x3166 <SD_Init+0x14>
-    316a:	00 c0       	rjmp	.+0      	; 0x316c <SD_Init+0x1a>
-    316c:	00 00       	nop
-    316e:	cf ef       	ldi	r28, 0xFF	; 255
+    3180:	2a 98       	cbi	0x05, 2	; 5
+    3182:	8f e9       	ldi	r24, 0x9F	; 159
+    3184:	9f e0       	ldi	r25, 0x0F	; 15
+    3186:	01 97       	sbiw	r24, 0x01	; 1
+    3188:	f1 f7       	brne	.-4      	; 0x3186 <SD_Init+0x14>
+    318a:	00 c0       	rjmp	.+0      	; 0x318c <SD_Init+0x1a>
+    318c:	00 00       	nop
+    318e:	cf ef       	ldi	r28, 0xFF	; 255
 	_delay_ms(1);       //Wait MMC/SD ready...
 
 	for(i=0;i<0xff;i++)
 	{
 		SPI_RW(0xff);   //send 74 clock at least!!!
-    3170:	8f ef       	ldi	r24, 0xFF	; 255
-    3172:	0e 94 6c 18 	call	0x30d8	; 0x30d8 <SPI_RW>
-    3176:	c1 50       	subi	r28, 0x01	; 1
+    3190:	8f ef       	ldi	r24, 0xFF	; 255
+    3192:	0e 94 7c 18 	call	0x30f8	; 0x30f8 <SPI_RW>
+    3196:	c1 50       	subi	r28, 0x01	; 1
 	SPI_Low();
 
 	SD_CS_L;
 	_delay_ms(1);       //Wait MMC/SD ready...
 
 	for(i=0;i<0xff;i++)
-    3178:	d9 f7       	brne	.-10     	; 0x3170 <SD_Init+0x1e>
-    317a:	2d c0       	rjmp	.+90     	; 0x31d6 <SD_Init+0x84>
+    3198:	d9 f7       	brne	.-10     	; 0x3190 <SD_Init+0x1e>
+    319a:	2d c0       	rjmp	.+90     	; 0x31f6 <SD_Init+0x84>
 
 	retry = 0;
 
 	do
 	{
 		temp=SD_Write_Command(0,0);//retry 200 times to send CMD0 command 
-    317c:	40 e0       	ldi	r20, 0x00	; 0
-    317e:	50 e0       	ldi	r21, 0x00	; 0
-    3180:	ba 01       	movw	r22, r20
-    3182:	80 e0       	ldi	r24, 0x00	; 0
-    3184:	0e 94 72 18 	call	0x30e4	; 0x30e4 <SD_Write_Command>
-    3188:	01 50       	subi	r16, 0x01	; 1
-    318a:	11 09       	sbc	r17, r1
+    319c:	40 e0       	ldi	r20, 0x00	; 0
+    319e:	50 e0       	ldi	r21, 0x00	; 0
+    31a0:	ba 01       	movw	r22, r20
+    31a2:	80 e0       	ldi	r24, 0x00	; 0
+    31a4:	0e 94 82 18 	call	0x3104	; 0x3104 <SD_Write_Command>
+    31a8:	01 50       	subi	r16, 0x01	; 1
+    31aa:	11 09       	sbc	r17, r1
 		retry++;
 		if(retry==2000) return 0xff;//CMD0 Error! 
-    318c:	b9 f0       	breq	.+46     	; 0x31bc <SD_Init+0x6a>
+    31ac:	b9 f0       	breq	.+46     	; 0x31dc <SD_Init+0x6a>
 
 	}while(temp!=1);      //temp=0x01即说明SD卡进入空闲状态复位成功
-    318e:	81 30       	cpi	r24, 0x01	; 1
-    3190:	a9 f7       	brne	.-22     	; 0x317c <SD_Init+0x2a>
-    3192:	18 c0       	rjmp	.+48     	; 0x31c4 <SD_Init+0x72>
+    31ae:	81 30       	cpi	r24, 0x01	; 1
+    31b0:	a9 f7       	brne	.-22     	; 0x319c <SD_Init+0x2a>
+    31b2:	18 c0       	rjmp	.+48     	; 0x31e4 <SD_Init+0x72>
 
 	retry = 0;
 	do
 	{
 		temp=SD_Write_Command(1,0);
-    3194:	40 e0       	ldi	r20, 0x00	; 0
-    3196:	50 e0       	ldi	r21, 0x00	; 0
-    3198:	ba 01       	movw	r22, r20
-    319a:	81 e0       	ldi	r24, 0x01	; 1
-    319c:	0e 94 72 18 	call	0x30e4	; 0x30e4 <SD_Write_Command>
-    31a0:	01 50       	subi	r16, 0x01	; 1
-    31a2:	11 09       	sbc	r17, r1
+    31b4:	40 e0       	ldi	r20, 0x00	; 0
+    31b6:	50 e0       	ldi	r21, 0x00	; 0
+    31b8:	ba 01       	movw	r22, r20
+    31ba:	81 e0       	ldi	r24, 0x01	; 1
+    31bc:	0e 94 82 18 	call	0x3104	; 0x3104 <SD_Write_Command>
+    31c0:	01 50       	subi	r16, 0x01	; 1
+    31c2:	11 09       	sbc	r17, r1
 		retry++;
 		if(retry >= 2000) return 0xff;  //retry 100 times to send CMD1 command 
-    31a4:	69 f0       	breq	.+26     	; 0x31c0 <SD_Init+0x6e>
+    31c4:	69 f0       	breq	.+26     	; 0x31e0 <SD_Init+0x6e>
 	}while(temp!=0);    //temp=0说明SD可以进行操作 激活成功
-    31a6:	81 11       	cpse	r24, r1
-    31a8:	f5 cf       	rjmp	.-22     	; 0x3194 <SD_Init+0x42>
+    31c6:	81 11       	cpse	r24, r1
+    31c8:	f5 cf       	rjmp	.-22     	; 0x31b4 <SD_Init+0x42>
 
 	retry = 0;
 	SD_Write_Command(16,512);     //设置一次读写BLOCK的长度为512个字节 CMD16
-    31aa:	40 e0       	ldi	r20, 0x00	; 0
-    31ac:	52 e0       	ldi	r21, 0x02	; 2
-    31ae:	60 e0       	ldi	r22, 0x00	; 0
-    31b0:	70 e0       	ldi	r23, 0x00	; 0
-    31b2:	80 e1       	ldi	r24, 0x10	; 16
-    31b4:	0e 94 72 18 	call	0x30e4	; 0x30e4 <SD_Write_Command>
+    31ca:	40 e0       	ldi	r20, 0x00	; 0
+    31cc:	52 e0       	ldi	r21, 0x02	; 2
+    31ce:	60 e0       	ldi	r22, 0x00	; 0
+    31d0:	70 e0       	ldi	r23, 0x00	; 0
+    31d2:	80 e1       	ldi	r24, 0x10	; 16
+    31d4:	0e 94 82 18 	call	0x3104	; 0x3104 <SD_Write_Command>
 	SD_CS_H;   //MMC_CS_PIN=1;  //set MMC_Chip_Select to high 关闭片选
-    31b8:	2a 9a       	sbi	0x05, 2	; 5
+    31d8:	2a 9a       	sbi	0x05, 2	; 5
     return(0); //All commands have been taken.
-    31ba:	16 c0       	rjmp	.+44     	; 0x31e8 <SD_Init+0x96>
+    31da:	16 c0       	rjmp	.+44     	; 0x3208 <SD_Init+0x96>
 
 	do
 	{
 		temp=SD_Write_Command(0,0);//retry 200 times to send CMD0 command 
 		retry++;
 		if(retry==2000) return 0xff;//CMD0 Error! 
-    31bc:	cf ef       	ldi	r28, 0xFF	; 255
-    31be:	14 c0       	rjmp	.+40     	; 0x31e8 <SD_Init+0x96>
+    31dc:	cf ef       	ldi	r28, 0xFF	; 255
+    31de:	14 c0       	rjmp	.+40     	; 0x3208 <SD_Init+0x96>
 	retry = 0;
 	do
 	{
 		temp=SD_Write_Command(1,0);
 		retry++;
 		if(retry >= 2000) return 0xff;  //retry 100 times to send CMD1 command 
-    31c0:	cf ef       	ldi	r28, 0xFF	; 255
-    31c2:	12 c0       	rjmp	.+36     	; 0x31e8 <SD_Init+0x96>
+    31e0:	cf ef       	ldi	r28, 0xFF	; 255
+    31e2:	12 c0       	rjmp	.+36     	; 0x3208 <SD_Init+0x96>
 	}while(temp!=1);      //temp=0x01即说明SD卡进入空闲状态复位成功
 
 	retry = 0;
 	do
 	{
 		temp=SD_Write_Command(1,0);
-    31c4:	40 e0       	ldi	r20, 0x00	; 0
-    31c6:	50 e0       	ldi	r21, 0x00	; 0
-    31c8:	ba 01       	movw	r22, r20
-    31ca:	81 e0       	ldi	r24, 0x01	; 1
-    31cc:	0e 94 72 18 	call	0x30e4	; 0x30e4 <SD_Write_Command>
-    31d0:	0f ec       	ldi	r16, 0xCF	; 207
-    31d2:	17 e0       	ldi	r17, 0x07	; 7
-    31d4:	e8 cf       	rjmp	.-48     	; 0x31a6 <SD_Init+0x54>
+    31e4:	40 e0       	ldi	r20, 0x00	; 0
+    31e6:	50 e0       	ldi	r21, 0x00	; 0
+    31e8:	ba 01       	movw	r22, r20
+    31ea:	81 e0       	ldi	r24, 0x01	; 1
+    31ec:	0e 94 82 18 	call	0x3104	; 0x3104 <SD_Write_Command>
+    31f0:	0f ec       	ldi	r16, 0xCF	; 207
+    31f2:	17 e0       	ldi	r17, 0x07	; 7
+    31f4:	e8 cf       	rjmp	.-48     	; 0x31c6 <SD_Init+0x54>
 
 	retry = 0;
 
 	do
 	{
 		temp=SD_Write_Command(0,0);//retry 200 times to send CMD0 command 
-    31d6:	40 e0       	ldi	r20, 0x00	; 0
-    31d8:	50 e0       	ldi	r21, 0x00	; 0
-    31da:	ba 01       	movw	r22, r20
-    31dc:	80 e0       	ldi	r24, 0x00	; 0
-    31de:	0e 94 72 18 	call	0x30e4	; 0x30e4 <SD_Write_Command>
-    31e2:	0f ec       	ldi	r16, 0xCF	; 207
-    31e4:	17 e0       	ldi	r17, 0x07	; 7
-    31e6:	d3 cf       	rjmp	.-90     	; 0x318e <SD_Init+0x3c>
+    31f6:	40 e0       	ldi	r20, 0x00	; 0
+    31f8:	50 e0       	ldi	r21, 0x00	; 0
+    31fa:	ba 01       	movw	r22, r20
+    31fc:	80 e0       	ldi	r24, 0x00	; 0
+    31fe:	0e 94 82 18 	call	0x3104	; 0x3104 <SD_Write_Command>
+    3202:	0f ec       	ldi	r16, 0xCF	; 207
+    3204:	17 e0       	ldi	r17, 0x07	; 7
+    3206:	d3 cf       	rjmp	.-90     	; 0x31ae <SD_Init+0x3c>
 	SD_Write_Command(16,512);     //设置一次读写BLOCK的长度为512个字节 CMD16
 	SD_CS_H;   //MMC_CS_PIN=1;  //set MMC_Chip_Select to high 关闭片选
     return(0); //All commands have been taken.
 
 
 }
-    31e8:	8c 2f       	mov	r24, r28
-    31ea:	cf 91       	pop	r28
-    31ec:	1f 91       	pop	r17
-    31ee:	0f 91       	pop	r16
-    31f0:	08 95       	ret
+    3208:	8c 2f       	mov	r24, r28
+    320a:	cf 91       	pop	r28
+    320c:	1f 91       	pop	r17
+    320e:	0f 91       	pop	r16
+    3210:	08 95       	ret
 
-000031f2 <SD_SendCommand>:
+00003212 <SD_SendCommand>:
 *                  unsigned char crc   crc校验值
 * Output         : None
 * Return         : unsigned char r1 SD卡返回的响应
 *******************************************************************************/
 unsigned char SD_SendCommand(unsigned char cmd,unsigned long arg,unsigned char crc)
 {
-    31f2:	ef 92       	push	r14
-    31f4:	ff 92       	push	r15
-    31f6:	0f 93       	push	r16
-    31f8:	1f 93       	push	r17
-    31fa:	cf 93       	push	r28
-    31fc:	df 93       	push	r29
-    31fe:	e8 2e       	mov	r14, r24
-    3200:	d4 2f       	mov	r29, r20
-    3202:	15 2f       	mov	r17, r21
-    3204:	06 2f       	mov	r16, r22
-    3206:	f7 2e       	mov	r15, r23
-    3208:	c2 2f       	mov	r28, r18
+    3212:	ef 92       	push	r14
+    3214:	ff 92       	push	r15
+    3216:	0f 93       	push	r16
+    3218:	1f 93       	push	r17
+    321a:	cf 93       	push	r28
+    321c:	df 93       	push	r29
+    321e:	e8 2e       	mov	r14, r24
+    3220:	d4 2f       	mov	r29, r20
+    3222:	15 2f       	mov	r17, r21
+    3224:	06 2f       	mov	r16, r22
+    3226:	f7 2e       	mov	r15, r23
+    3228:	c2 2f       	mov	r28, r18
     unsigned char r1 ;
     unsigned char Retry=0 ;
     
 
     SPI_RW(0XFF);
-    320a:	8f ef       	ldi	r24, 0xFF	; 255
-    320c:	0e 94 6c 18 	call	0x30d8	; 0x30d8 <SPI_RW>
+    322a:	8f ef       	ldi	r24, 0xFF	; 255
+    322c:	0e 94 7c 18 	call	0x30f8	; 0x30f8 <SPI_RW>
     //片选端置低，选中SD卡
     SD_CS_L;   //PC0 = 0
-    3210:	2a 98       	cbi	0x05, 2	; 5
+    3230:	2a 98       	cbi	0x05, 2	; 5
     
     //发送
     SPI_RW(cmd|0x40);
-    3212:	8e 2d       	mov	r24, r14
-    3214:	80 64       	ori	r24, 0x40	; 64
-    3216:	0e 94 6c 18 	call	0x30d8	; 0x30d8 <SPI_RW>
+    3232:	8e 2d       	mov	r24, r14
+    3234:	80 64       	ori	r24, 0x40	; 64
+    3236:	0e 94 7c 18 	call	0x30f8	; 0x30f8 <SPI_RW>
     //分别写入命令
     SPI_RW(arg>>24);
-    321a:	8f 2d       	mov	r24, r15
-    321c:	0e 94 6c 18 	call	0x30d8	; 0x30d8 <SPI_RW>
+    323a:	8f 2d       	mov	r24, r15
+    323c:	0e 94 7c 18 	call	0x30f8	; 0x30f8 <SPI_RW>
     SPI_RW(arg>>16);
-    3220:	80 2f       	mov	r24, r16
-    3222:	0e 94 6c 18 	call	0x30d8	; 0x30d8 <SPI_RW>
+    3240:	80 2f       	mov	r24, r16
+    3242:	0e 94 7c 18 	call	0x30f8	; 0x30f8 <SPI_RW>
     SPI_RW(arg>>8);
-    3226:	81 2f       	mov	r24, r17
-    3228:	0e 94 6c 18 	call	0x30d8	; 0x30d8 <SPI_RW>
+    3246:	81 2f       	mov	r24, r17
+    3248:	0e 94 7c 18 	call	0x30f8	; 0x30f8 <SPI_RW>
     SPI_RW(arg);
-    322c:	8d 2f       	mov	r24, r29
-    322e:	0e 94 6c 18 	call	0x30d8	; 0x30d8 <SPI_RW>
+    324c:	8d 2f       	mov	r24, r29
+    324e:	0e 94 7c 18 	call	0x30f8	; 0x30f8 <SPI_RW>
     SPI_RW(crc);
-    3232:	8c 2f       	mov	r24, r28
-    3234:	0e 94 6c 18 	call	0x30d8	; 0x30d8 <SPI_RW>
+    3252:	8c 2f       	mov	r24, r28
+    3254:	0e 94 7c 18 	call	0x30f8	; 0x30f8 <SPI_RW>
     
     //等待响应，或超时退出
     while((r1=SPI_RW(0xFF))==0xFF)
-    3238:	c9 ec       	ldi	r28, 0xC9	; 201
-    323a:	02 c0       	rjmp	.+4      	; 0x3240 <SD_SendCommand+0x4e>
-    323c:	c1 50       	subi	r28, 0x01	; 1
+    3258:	c9 ec       	ldi	r28, 0xC9	; 201
+    325a:	02 c0       	rjmp	.+4      	; 0x3260 <SD_SendCommand+0x4e>
+    325c:	c1 50       	subi	r28, 0x01	; 1
     {
         Retry++;
         if(Retry>200)
-    323e:	31 f0       	breq	.+12     	; 0x324c <SD_SendCommand+0x5a>
+    325e:	31 f0       	breq	.+12     	; 0x326c <SD_SendCommand+0x5a>
     SPI_RW(arg>>8);
     SPI_RW(arg);
     SPI_RW(crc);
     
     //等待响应，或超时退出
     while((r1=SPI_RW(0xFF))==0xFF)
-    3240:	8f ef       	ldi	r24, 0xFF	; 255
-    3242:	0e 94 6c 18 	call	0x30d8	; 0x30d8 <SPI_RW>
-    3246:	d8 2f       	mov	r29, r24
-    3248:	8f 3f       	cpi	r24, 0xFF	; 255
-    324a:	c1 f3       	breq	.-16     	; 0x323c <SD_SendCommand+0x4a>
+    3260:	8f ef       	ldi	r24, 0xFF	; 255
+    3262:	0e 94 7c 18 	call	0x30f8	; 0x30f8 <SPI_RW>
+    3266:	d8 2f       	mov	r29, r24
+    3268:	8f 3f       	cpi	r24, 0xFF	; 255
+    326a:	c1 f3       	breq	.-16     	; 0x325c <SD_SendCommand+0x4a>
         break ;
         }
     }
 
     //关闭片选
     SD_CS_H;
-    324c:	2a 9a       	sbi	0x05, 2	; 5
+    326c:	2a 9a       	sbi	0x05, 2	; 5
     //在总线上额外增加8个时钟，让SD卡完成剩下的工作
     SPI_RW(0xFF);
-    324e:	8f ef       	ldi	r24, 0xFF	; 255
-    3250:	0e 94 6c 18 	call	0x30d8	; 0x30d8 <SPI_RW>
+    326e:	8f ef       	ldi	r24, 0xFF	; 255
+    3270:	0e 94 7c 18 	call	0x30f8	; 0x30f8 <SPI_RW>
     
     //返回状态值
     return r1 ;
 }
-    3254:	8d 2f       	mov	r24, r29
-    3256:	df 91       	pop	r29
-    3258:	cf 91       	pop	r28
-    325a:	1f 91       	pop	r17
-    325c:	0f 91       	pop	r16
-    325e:	ff 90       	pop	r15
-    3260:	ef 90       	pop	r14
-    3262:	08 95       	ret
+    3274:	8d 2f       	mov	r24, r29
+    3276:	df 91       	pop	r29
+    3278:	cf 91       	pop	r28
+    327a:	1f 91       	pop	r17
+    327c:	0f 91       	pop	r16
+    327e:	ff 90       	pop	r15
+    3280:	ef 90       	pop	r14
+    3282:	08 95       	ret
 
-00003264 <SD_ReceiveData>:
+00003284 <SD_ReceiveData>:
 * Return         : unsigned char
 *                  0：NO_ERR
 *                  other：错误信息
 *******************************************************************************/
 unsigned char SD_ReceiveData(unsigned char*data,unsigned int len,unsigned char release)
 {
-    3264:	df 92       	push	r13
-    3266:	ef 92       	push	r14
-    3268:	ff 92       	push	r15
-    326a:	0f 93       	push	r16
-    326c:	1f 93       	push	r17
-    326e:	cf 93       	push	r28
-    3270:	df 93       	push	r29
-    3272:	7c 01       	movw	r14, r24
-    3274:	8b 01       	movw	r16, r22
-    3276:	d4 2e       	mov	r13, r20
+    3284:	df 92       	push	r13
+    3286:	ef 92       	push	r14
+    3288:	ff 92       	push	r15
+    328a:	0f 93       	push	r16
+    328c:	1f 93       	push	r17
+    328e:	cf 93       	push	r28
+    3290:	df 93       	push	r29
+    3292:	7c 01       	movw	r14, r24
+    3294:	8b 01       	movw	r16, r22
+    3296:	d4 2e       	mov	r13, r20
     unsigned int retry ;
     unsigned char r1 ;
     
     // 启动一次传输
     SD_CS_L;
-    3278:	2a 98       	cbi	0x05, 2	; 5
+    3298:	2a 98       	cbi	0x05, 2	; 5
     //等待SD卡发回数据起始令牌0xFE
     retry=0 ;
     do 
     {
         r1=SPI_RW(0xFF);
-    327a:	8f ef       	ldi	r24, 0xFF	; 255
-    327c:	0e 94 6c 18 	call	0x30d8	; 0x30d8 <SPI_RW>
-    3280:	c8 ec       	ldi	r28, 0xC8	; 200
-    3282:	d0 e0       	ldi	r29, 0x00	; 0
-    3284:	08 c0       	rjmp	.+16     	; 0x3296 <SD_ReceiveData+0x32>
-    3286:	8f ef       	ldi	r24, 0xFF	; 255
-    3288:	0e 94 6c 18 	call	0x30d8	; 0x30d8 <SPI_RW>
-    328c:	21 97       	sbiw	r28, 0x01	; 1
+    329a:	8f ef       	ldi	r24, 0xFF	; 255
+    329c:	0e 94 7c 18 	call	0x30f8	; 0x30f8 <SPI_RW>
+    32a0:	c8 ec       	ldi	r28, 0xC8	; 200
+    32a2:	d0 e0       	ldi	r29, 0x00	; 0
+    32a4:	08 c0       	rjmp	.+16     	; 0x32b6 <SD_ReceiveData+0x32>
+    32a6:	8f ef       	ldi	r24, 0xFF	; 255
+    32a8:	0e 94 7c 18 	call	0x30f8	; 0x30f8 <SPI_RW>
+    32ac:	21 97       	sbiw	r28, 0x01	; 1
         retry++;
         //2000次等待后没有应答，退出报错
         if(retry>200)
-    328e:	19 f4       	brne	.+6      	; 0x3296 <SD_ReceiveData+0x32>
+    32ae:	19 f4       	brne	.+6      	; 0x32b6 <SD_ReceiveData+0x32>
         {
             SD_CS_H;
-    3290:	2a 9a       	sbi	0x05, 2	; 5
+    32b0:	2a 9a       	sbi	0x05, 2	; 5
             return 1 ;
-    3292:	81 e0       	ldi	r24, 0x01	; 1
-    3294:	1e c0       	rjmp	.+60     	; 0x32d2 <SD_ReceiveData+0x6e>
+    32b2:	81 e0       	ldi	r24, 0x01	; 1
+    32b4:	1e c0       	rjmp	.+60     	; 0x32f2 <SD_ReceiveData+0x6e>
         }
     }
     while(r1!=0xFE);
-    3296:	8e 3f       	cpi	r24, 0xFE	; 254
-    3298:	b1 f7       	brne	.-20     	; 0x3286 <SD_ReceiveData+0x22>
+    32b6:	8e 3f       	cpi	r24, 0xFE	; 254
+    32b8:	b1 f7       	brne	.-20     	; 0x32a6 <SD_ReceiveData+0x22>
     //开始接收数据
     while(len--)
-    329a:	01 15       	cp	r16, r1
-    329c:	11 05       	cpc	r17, r1
-    329e:	49 f0       	breq	.+18     	; 0x32b2 <SD_ReceiveData+0x4e>
-    32a0:	e8 01       	movw	r28, r16
+    32ba:	01 15       	cp	r16, r1
+    32bc:	11 05       	cpc	r17, r1
+    32be:	49 f0       	breq	.+18     	; 0x32d2 <SD_ReceiveData+0x4e>
+    32c0:	e8 01       	movw	r28, r16
     {
         *data=SPI_RW(0xFF);
-    32a2:	8f ef       	ldi	r24, 0xFF	; 255
-    32a4:	0e 94 6c 18 	call	0x30d8	; 0x30d8 <SPI_RW>
-    32a8:	f7 01       	movw	r30, r14
-    32aa:	81 93       	st	Z+, r24
-    32ac:	7f 01       	movw	r14, r30
-    32ae:	21 97       	sbiw	r28, 0x01	; 1
+    32c2:	8f ef       	ldi	r24, 0xFF	; 255
+    32c4:	0e 94 7c 18 	call	0x30f8	; 0x30f8 <SPI_RW>
+    32c8:	f7 01       	movw	r30, r14
+    32ca:	81 93       	st	Z+, r24
+    32cc:	7f 01       	movw	r14, r30
+    32ce:	21 97       	sbiw	r28, 0x01	; 1
             return 1 ;
         }
     }
     while(r1!=0xFE);
     //开始接收数据
     while(len--)
-    32b0:	c1 f7       	brne	.-16     	; 0x32a2 <SD_ReceiveData+0x3e>
+    32d0:	c1 f7       	brne	.-16     	; 0x32c2 <SD_ReceiveData+0x3e>
     {
         *data=SPI_RW(0xFF);
         data++;
     }
     //下面是2个伪CRC（dummy CRC）
     SPI_RW(0xFF);
-    32b2:	8f ef       	ldi	r24, 0xFF	; 255
-    32b4:	0e 94 6c 18 	call	0x30d8	; 0x30d8 <SPI_RW>
+    32d2:	8f ef       	ldi	r24, 0xFF	; 255
+    32d4:	0e 94 7c 18 	call	0x30f8	; 0x30f8 <SPI_RW>
     SPI_RW(0xFF);
-    32b8:	8f ef       	ldi	r24, 0xFF	; 255
-    32ba:	0e 94 6c 18 	call	0x30d8	; 0x30d8 <SPI_RW>
+    32d8:	8f ef       	ldi	r24, 0xFF	; 255
+    32da:	0e 94 7c 18 	call	0x30f8	; 0x30f8 <SPI_RW>
     //按需释放总线，将CS置高
     if(release==RELEASE)
-    32be:	f1 e0       	ldi	r31, 0x01	; 1
-    32c0:	df 12       	cpse	r13, r31
-    32c2:	06 c0       	rjmp	.+12     	; 0x32d0 <SD_ReceiveData+0x6c>
+    32de:	f1 e0       	ldi	r31, 0x01	; 1
+    32e0:	df 12       	cpse	r13, r31
+    32e2:	06 c0       	rjmp	.+12     	; 0x32f0 <SD_ReceiveData+0x6c>
     {
         //传输结束
         SD_CS_H;
-    32c4:	2a 9a       	sbi	0x05, 2	; 5
+    32e4:	2a 9a       	sbi	0x05, 2	; 5
         SPI_RW(0xFF);
-    32c6:	8f ef       	ldi	r24, 0xFF	; 255
-    32c8:	0e 94 6c 18 	call	0x30d8	; 0x30d8 <SPI_RW>
+    32e6:	8f ef       	ldi	r24, 0xFF	; 255
+    32e8:	0e 94 7c 18 	call	0x30f8	; 0x30f8 <SPI_RW>
     }
     return 0 ;
-    32cc:	80 e0       	ldi	r24, 0x00	; 0
-    32ce:	01 c0       	rjmp	.+2      	; 0x32d2 <SD_ReceiveData+0x6e>
-    32d0:	80 e0       	ldi	r24, 0x00	; 0
+    32ec:	80 e0       	ldi	r24, 0x00	; 0
+    32ee:	01 c0       	rjmp	.+2      	; 0x32f2 <SD_ReceiveData+0x6e>
+    32f0:	80 e0       	ldi	r24, 0x00	; 0
 }
-    32d2:	df 91       	pop	r29
-    32d4:	cf 91       	pop	r28
-    32d6:	1f 91       	pop	r17
-    32d8:	0f 91       	pop	r16
-    32da:	ff 90       	pop	r15
-    32dc:	ef 90       	pop	r14
-    32de:	df 90       	pop	r13
-    32e0:	08 95       	ret
+    32f2:	df 91       	pop	r29
+    32f4:	cf 91       	pop	r28
+    32f6:	1f 91       	pop	r17
+    32f8:	0f 91       	pop	r16
+    32fa:	ff 90       	pop	r15
+    32fc:	ef 90       	pop	r14
+    32fe:	df 90       	pop	r13
+    3300:	08 95       	ret
 
-000032e2 <SD_ReadSingleBlock>:
+00003302 <SD_ReadSingleBlock>:
 * Return         : unsigned char r1
 *                   0： 成功
 *                   other：失败
 *******************************************************************************/
 unsigned char SD_ReadSingleBlock(unsigned long sector,unsigned char*buffer)
 {
-    32e2:	cf 92       	push	r12
-    32e4:	df 92       	push	r13
-    32e6:	ef 92       	push	r14
-    32e8:	ff 92       	push	r15
-    32ea:	cf 93       	push	r28
-    32ec:	df 93       	push	r29
-    32ee:	6b 01       	movw	r12, r22
-    32f0:	7c 01       	movw	r14, r24
-    32f2:	ea 01       	movw	r28, r20
+    3302:	cf 92       	push	r12
+    3304:	df 92       	push	r13
+    3306:	ef 92       	push	r14
+    3308:	ff 92       	push	r15
+    330a:	cf 93       	push	r28
+    330c:	df 93       	push	r29
+    330e:	6b 01       	movw	r12, r22
+    3310:	7c 01       	movw	r14, r24
+    3312:	ea 01       	movw	r28, r20
     unsigned char r1 ;
     
     //设置为高速模式
     SPI_High();
-    32f4:	0e 94 5b 18 	call	0x30b6	; 0x30b6 <SPI_High>
+    3314:	0e 94 6b 18 	call	0x30d6	; 0x30d6 <SPI_High>
     
     //如果不是SDHC，将sector地址转成byte地址
     sector=sector<<9 ;
-    32f8:	b7 01       	movw	r22, r14
-    32fa:	a6 01       	movw	r20, r12
-    32fc:	03 2e       	mov	r0, r19
-    32fe:	39 e0       	ldi	r19, 0x09	; 9
-    3300:	44 0f       	add	r20, r20
-    3302:	55 1f       	adc	r21, r21
-    3304:	66 1f       	adc	r22, r22
-    3306:	77 1f       	adc	r23, r23
-    3308:	3a 95       	dec	r19
-    330a:	d1 f7       	brne	.-12     	; 0x3300 <SD_ReadSingleBlock+0x1e>
-    330c:	30 2d       	mov	r19, r0
+    3318:	b7 01       	movw	r22, r14
+    331a:	a6 01       	movw	r20, r12
+    331c:	03 2e       	mov	r0, r19
+    331e:	39 e0       	ldi	r19, 0x09	; 9
+    3320:	44 0f       	add	r20, r20
+    3322:	55 1f       	adc	r21, r21
+    3324:	66 1f       	adc	r22, r22
+    3326:	77 1f       	adc	r23, r23
+    3328:	3a 95       	dec	r19
+    332a:	d1 f7       	brne	.-12     	; 0x3320 <SD_ReadSingleBlock+0x1e>
+    332c:	30 2d       	mov	r19, r0
     
     r1=SD_SendCommand(CMD17,sector,0);
-    330e:	20 e0       	ldi	r18, 0x00	; 0
-    3310:	81 e1       	ldi	r24, 0x11	; 17
-    3312:	0e 94 f9 18 	call	0x31f2	; 0x31f2 <SD_SendCommand>
+    332e:	20 e0       	ldi	r18, 0x00	; 0
+    3330:	81 e1       	ldi	r24, 0x11	; 17
+    3332:	0e 94 09 19 	call	0x3212	; 0x3212 <SD_SendCommand>
     //读命令
     
     if(r1!=0x00)
-    3316:	81 11       	cpse	r24, r1
-    3318:	06 c0       	rjmp	.+12     	; 0x3326 <SD_ReadSingleBlock+0x44>
+    3336:	81 11       	cpse	r24, r1
+    3338:	06 c0       	rjmp	.+12     	; 0x3346 <SD_ReadSingleBlock+0x44>
     {
         return r1 ;
     }
     
     r1=SD_ReceiveData(buffer,512,RELEASE);
-    331a:	41 e0       	ldi	r20, 0x01	; 1
-    331c:	60 e0       	ldi	r22, 0x00	; 0
-    331e:	72 e0       	ldi	r23, 0x02	; 2
-    3320:	ce 01       	movw	r24, r28
-    3322:	0e 94 32 19 	call	0x3264	; 0x3264 <SD_ReceiveData>
+    333a:	41 e0       	ldi	r20, 0x01	; 1
+    333c:	60 e0       	ldi	r22, 0x00	; 0
+    333e:	72 e0       	ldi	r23, 0x02	; 2
+    3340:	ce 01       	movw	r24, r28
+    3342:	0e 94 42 19 	call	0x3284	; 0x3284 <SD_ReceiveData>
     }
     else 
     {
         return 0 ;
     }
 }
-    3326:	df 91       	pop	r29
-    3328:	cf 91       	pop	r28
-    332a:	ff 90       	pop	r15
-    332c:	ef 90       	pop	r14
-    332e:	df 90       	pop	r13
-    3330:	cf 90       	pop	r12
-    3332:	08 95       	ret
+    3346:	df 91       	pop	r29
+    3348:	cf 91       	pop	r28
+    334a:	ff 90       	pop	r15
+    334c:	ef 90       	pop	r14
+    334e:	df 90       	pop	r13
+    3350:	cf 90       	pop	r12
+    3352:	08 95       	ret
 
-00003334 <SD_ReadMultiBlock>:
+00003354 <SD_ReadMultiBlock>:
 * Return         : unsigned char r1
 *                   0： 成功
 *                   other：失败
 *******************************************************************************/
 unsigned char SD_ReadMultiBlock(unsigned long sector,unsigned char *buffer,unsigned char count)
 {
-    3334:	cf 92       	push	r12
-    3336:	df 92       	push	r13
-    3338:	ef 92       	push	r14
-    333a:	ff 92       	push	r15
-    333c:	0f 93       	push	r16
-    333e:	1f 93       	push	r17
-    3340:	cf 93       	push	r28
-    3342:	6b 01       	movw	r12, r22
-    3344:	7c 01       	movw	r14, r24
-    3346:	8a 01       	movw	r16, r20
-    3348:	c2 2f       	mov	r28, r18
+    3354:	cf 92       	push	r12
+    3356:	df 92       	push	r13
+    3358:	ef 92       	push	r14
+    335a:	ff 92       	push	r15
+    335c:	0f 93       	push	r16
+    335e:	1f 93       	push	r17
+    3360:	cf 93       	push	r28
+    3362:	6b 01       	movw	r12, r22
+    3364:	7c 01       	movw	r14, r24
+    3366:	8a 01       	movw	r16, r20
+    3368:	c2 2f       	mov	r28, r18
     unsigned char r1 ;
     
     //设置为高速模式
     SPI_High();
-    334a:	0e 94 5b 18 	call	0x30b6	; 0x30b6 <SPI_High>
+    336a:	0e 94 6b 18 	call	0x30d6	; 0x30d6 <SPI_High>
     
     //如果不是SDHC，将sector地址转成byte地址
     sector=sector<<9 ;
-    334e:	b7 01       	movw	r22, r14
-    3350:	a6 01       	movw	r20, r12
-    3352:	03 2e       	mov	r0, r19
-    3354:	39 e0       	ldi	r19, 0x09	; 9
-    3356:	44 0f       	add	r20, r20
-    3358:	55 1f       	adc	r21, r21
-    335a:	66 1f       	adc	r22, r22
-    335c:	77 1f       	adc	r23, r23
-    335e:	3a 95       	dec	r19
-    3360:	d1 f7       	brne	.-12     	; 0x3356 <SD_ReadMultiBlock+0x22>
-    3362:	30 2d       	mov	r19, r0
+    336e:	b7 01       	movw	r22, r14
+    3370:	a6 01       	movw	r20, r12
+    3372:	03 2e       	mov	r0, r19
+    3374:	39 e0       	ldi	r19, 0x09	; 9
+    3376:	44 0f       	add	r20, r20
+    3378:	55 1f       	adc	r21, r21
+    337a:	66 1f       	adc	r22, r22
+    337c:	77 1f       	adc	r23, r23
+    337e:	3a 95       	dec	r19
+    3380:	d1 f7       	brne	.-12     	; 0x3376 <SD_ReadMultiBlock+0x22>
+    3382:	30 2d       	mov	r19, r0
     //SD_WaitReady();
     //发读多块命令
     r1=SD_SendCommand(CMD18,sector,0);
-    3364:	20 e0       	ldi	r18, 0x00	; 0
-    3366:	82 e1       	ldi	r24, 0x12	; 18
-    3368:	0e 94 f9 18 	call	0x31f2	; 0x31f2 <SD_SendCommand>
+    3384:	20 e0       	ldi	r18, 0x00	; 0
+    3386:	82 e1       	ldi	r24, 0x12	; 18
+    3388:	0e 94 09 19 	call	0x3212	; 0x3212 <SD_SendCommand>
     //读命令
     if(r1!=0x00)
-    336c:	81 11       	cpse	r24, r1
-    336e:	17 c0       	rjmp	.+46     	; 0x339e <SD_ReadMultiBlock+0x6a>
+    338c:	81 11       	cpse	r24, r1
+    338e:	17 c0       	rjmp	.+46     	; 0x33be <SD_ReadMultiBlock+0x6a>
         return r1 ;
     }
     //开始接收数据
     do 
     {
         if(SD_ReceiveData(buffer,512,NO_RELEASE)!=0x00)
-    3370:	40 e0       	ldi	r20, 0x00	; 0
-    3372:	60 e0       	ldi	r22, 0x00	; 0
-    3374:	72 e0       	ldi	r23, 0x02	; 2
-    3376:	c8 01       	movw	r24, r16
-    3378:	0e 94 32 19 	call	0x3264	; 0x3264 <SD_ReceiveData>
-    337c:	81 11       	cpse	r24, r1
-    337e:	03 c0       	rjmp	.+6      	; 0x3386 <SD_ReadMultiBlock+0x52>
+    3390:	40 e0       	ldi	r20, 0x00	; 0
+    3392:	60 e0       	ldi	r22, 0x00	; 0
+    3394:	72 e0       	ldi	r23, 0x02	; 2
+    3396:	c8 01       	movw	r24, r16
+    3398:	0e 94 42 19 	call	0x3284	; 0x3284 <SD_ReceiveData>
+    339c:	81 11       	cpse	r24, r1
+    339e:	03 c0       	rjmp	.+6      	; 0x33a6 <SD_ReadMultiBlock+0x52>
         {
             break ;
         }
         buffer+=512 ;
-    3380:	1e 5f       	subi	r17, 0xFE	; 254
+    33a0:	1e 5f       	subi	r17, 0xFE	; 254
     }
     while(--count);
-    3382:	c1 50       	subi	r28, 0x01	; 1
-    3384:	a9 f7       	brne	.-22     	; 0x3370 <SD_ReadMultiBlock+0x3c>
+    33a2:	c1 50       	subi	r28, 0x01	; 1
+    33a4:	a9 f7       	brne	.-22     	; 0x3390 <SD_ReadMultiBlock+0x3c>
     
     //全部传输完毕，发送停止命令
     SD_SendCommand(CMD12,0,0);
-    3386:	20 e0       	ldi	r18, 0x00	; 0
-    3388:	40 e0       	ldi	r20, 0x00	; 0
-    338a:	50 e0       	ldi	r21, 0x00	; 0
-    338c:	ba 01       	movw	r22, r20
-    338e:	8c e0       	ldi	r24, 0x0C	; 12
-    3390:	0e 94 f9 18 	call	0x31f2	; 0x31f2 <SD_SendCommand>
+    33a6:	20 e0       	ldi	r18, 0x00	; 0
+    33a8:	40 e0       	ldi	r20, 0x00	; 0
+    33aa:	50 e0       	ldi	r21, 0x00	; 0
+    33ac:	ba 01       	movw	r22, r20
+    33ae:	8c e0       	ldi	r24, 0x0C	; 12
+    33b0:	0e 94 09 19 	call	0x3212	; 0x3212 <SD_SendCommand>
     //释放总线
     SD_CS_H;
-    3394:	2a 9a       	sbi	0x05, 2	; 5
+    33b4:	2a 9a       	sbi	0x05, 2	; 5
     SPI_RW(0xFF);
-    3396:	8f ef       	ldi	r24, 0xFF	; 255
-    3398:	0e 94 6c 18 	call	0x30d8	; 0x30d8 <SPI_RW>
+    33b6:	8f ef       	ldi	r24, 0xFF	; 255
+    33b8:	0e 94 7c 18 	call	0x30f8	; 0x30f8 <SPI_RW>
         return count ;
         //如果没有传完，返回剩余个数
     }
     else 
     {
         return 0 ;
-    339c:	8c 2f       	mov	r24, r28
+    33bc:	8c 2f       	mov	r24, r28
     }
 }
-    339e:	cf 91       	pop	r28
-    33a0:	1f 91       	pop	r17
-    33a2:	0f 91       	pop	r16
-    33a4:	ff 90       	pop	r15
-    33a6:	ef 90       	pop	r14
-    33a8:	df 90       	pop	r13
-    33aa:	cf 90       	pop	r12
-    33ac:	08 95       	ret
+    33be:	cf 91       	pop	r28
+    33c0:	1f 91       	pop	r17
+    33c2:	0f 91       	pop	r16
+    33c4:	ff 90       	pop	r15
+    33c6:	ef 90       	pop	r14
+    33c8:	df 90       	pop	r13
+    33ca:	cf 90       	pop	r12
+    33cc:	08 95       	ret
 
-000033ae <SD_WriteSingleBlock>:
+000033ce <SD_WriteSingleBlock>:
 * Return         : unsigned char r1
 *                   0： 成功
 *                   other：失败
 *******************************************************************************/
 unsigned char SD_WriteSingleBlock(unsigned long sector,const unsigned char *data)
 {
-    33ae:	cf 92       	push	r12
-    33b0:	df 92       	push	r13
-    33b2:	ef 92       	push	r14
-    33b4:	ff 92       	push	r15
-    33b6:	0f 93       	push	r16
-    33b8:	1f 93       	push	r17
-    33ba:	cf 93       	push	r28
-    33bc:	df 93       	push	r29
-    33be:	6b 01       	movw	r12, r22
-    33c0:	7c 01       	movw	r14, r24
-    33c2:	8a 01       	movw	r16, r20
+    33ce:	cf 92       	push	r12
+    33d0:	df 92       	push	r13
+    33d2:	ef 92       	push	r14
+    33d4:	ff 92       	push	r15
+    33d6:	0f 93       	push	r16
+    33d8:	1f 93       	push	r17
+    33da:	cf 93       	push	r28
+    33dc:	df 93       	push	r29
+    33de:	6b 01       	movw	r12, r22
+    33e0:	7c 01       	movw	r14, r24
+    33e2:	8a 01       	movw	r16, r20
     unsigned char r1 ;
     unsigned int i ;
     unsigned int retry ;
     
     //设置为高速模式
     SPI_High();
-    33c4:	0e 94 5b 18 	call	0x30b6	; 0x30b6 <SPI_High>
+    33e4:	0e 94 6b 18 	call	0x30d6	; 0x30d6 <SPI_High>
     
     //如果不是SDHC，给定的是sector地址，将其转换成byte地址
     if(SD_Type!=SD_TYPE_V2HC)
-    33c8:	80 91 b8 01 	lds	r24, 0x01B8
-    33cc:	84 30       	cpi	r24, 0x04	; 4
-    33ce:	49 f0       	breq	.+18     	; 0x33e2 <SD_WriteSingleBlock+0x34>
+    33e8:	80 91 c4 01 	lds	r24, 0x01C4
+    33ec:	84 30       	cpi	r24, 0x04	; 4
+    33ee:	49 f0       	breq	.+18     	; 0x3402 <SD_WriteSingleBlock+0x34>
     {
         sector=sector<<9 ;
-    33d0:	0b 2e       	mov	r0, r27
-    33d2:	b9 e0       	ldi	r27, 0x09	; 9
-    33d4:	cc 0c       	add	r12, r12
-    33d6:	dd 1c       	adc	r13, r13
-    33d8:	ee 1c       	adc	r14, r14
-    33da:	ff 1c       	adc	r15, r15
-    33dc:	ba 95       	dec	r27
-    33de:	d1 f7       	brne	.-12     	; 0x33d4 <SD_WriteSingleBlock+0x26>
-    33e0:	b0 2d       	mov	r27, r0
+    33f0:	0b 2e       	mov	r0, r27
+    33f2:	b9 e0       	ldi	r27, 0x09	; 9
+    33f4:	cc 0c       	add	r12, r12
+    33f6:	dd 1c       	adc	r13, r13
+    33f8:	ee 1c       	adc	r14, r14
+    33fa:	ff 1c       	adc	r15, r15
+    33fc:	ba 95       	dec	r27
+    33fe:	d1 f7       	brne	.-12     	; 0x33f4 <SD_WriteSingleBlock+0x26>
+    3400:	b0 2d       	mov	r27, r0
     }
     
     r1=SD_SendCommand(CMD24,sector,0x00);
-    33e2:	20 e0       	ldi	r18, 0x00	; 0
-    33e4:	b7 01       	movw	r22, r14
-    33e6:	a6 01       	movw	r20, r12
-    33e8:	88 e1       	ldi	r24, 0x18	; 24
-    33ea:	0e 94 f9 18 	call	0x31f2	; 0x31f2 <SD_SendCommand>
+    3402:	20 e0       	ldi	r18, 0x00	; 0
+    3404:	b7 01       	movw	r22, r14
+    3406:	a6 01       	movw	r20, r12
+    3408:	88 e1       	ldi	r24, 0x18	; 24
+    340a:	0e 94 09 19 	call	0x3212	; 0x3212 <SD_SendCommand>
     if(r1!=0x00)
-    33ee:	81 11       	cpse	r24, r1
-    33f0:	35 c0       	rjmp	.+106    	; 0x345c <SD_WriteSingleBlock+0xae>
+    340e:	81 11       	cpse	r24, r1
+    3410:	35 c0       	rjmp	.+106    	; 0x347c <SD_WriteSingleBlock+0xae>
         return r1 ;
         //应答不正确，直接返回
     }
     
     //开始准备数据传输
     SD_CS_L;
-    33f2:	2a 98       	cbi	0x05, 2	; 5
+    3412:	2a 98       	cbi	0x05, 2	; 5
     //先放3个空数据，等待SD卡准备好
     SPI_RW(0xff);
-    33f4:	8f ef       	ldi	r24, 0xFF	; 255
-    33f6:	0e 94 6c 18 	call	0x30d8	; 0x30d8 <SPI_RW>
+    3414:	8f ef       	ldi	r24, 0xFF	; 255
+    3416:	0e 94 7c 18 	call	0x30f8	; 0x30f8 <SPI_RW>
     SPI_RW(0xff);
-    33fa:	8f ef       	ldi	r24, 0xFF	; 255
-    33fc:	0e 94 6c 18 	call	0x30d8	; 0x30d8 <SPI_RW>
+    341a:	8f ef       	ldi	r24, 0xFF	; 255
+    341c:	0e 94 7c 18 	call	0x30f8	; 0x30f8 <SPI_RW>
     SPI_RW(0xff);
-    3400:	8f ef       	ldi	r24, 0xFF	; 255
-    3402:	0e 94 6c 18 	call	0x30d8	; 0x30d8 <SPI_RW>
+    3420:	8f ef       	ldi	r24, 0xFF	; 255
+    3422:	0e 94 7c 18 	call	0x30f8	; 0x30f8 <SPI_RW>
     //放起始令牌0xFE
     SPI_RW(0xFE);
-    3406:	8e ef       	ldi	r24, 0xFE	; 254
-    3408:	0e 94 6c 18 	call	0x30d8	; 0x30d8 <SPI_RW>
-    340c:	e8 01       	movw	r28, r16
-    340e:	1e 5f       	subi	r17, 0xFE	; 254
+    3426:	8e ef       	ldi	r24, 0xFE	; 254
+    3428:	0e 94 7c 18 	call	0x30f8	; 0x30f8 <SPI_RW>
+    342c:	e8 01       	movw	r28, r16
+    342e:	1e 5f       	subi	r17, 0xFE	; 254
     
     //放一个sector的数据
     for(i=0;i<512;i++)
     {
         SPI_RW(*data++);
-    3410:	89 91       	ld	r24, Y+
-    3412:	0e 94 6c 18 	call	0x30d8	; 0x30d8 <SPI_RW>
+    3430:	89 91       	ld	r24, Y+
+    3432:	0e 94 7c 18 	call	0x30f8	; 0x30f8 <SPI_RW>
     SPI_RW(0xff);
     //放起始令牌0xFE
     SPI_RW(0xFE);
     
     //放一个sector的数据
     for(i=0;i<512;i++)
-    3416:	c0 17       	cp	r28, r16
-    3418:	d1 07       	cpc	r29, r17
-    341a:	d1 f7       	brne	.-12     	; 0x3410 <SD_WriteSingleBlock+0x62>
+    3436:	c0 17       	cp	r28, r16
+    3438:	d1 07       	cpc	r29, r17
+    343a:	d1 f7       	brne	.-12     	; 0x3430 <SD_WriteSingleBlock+0x62>
     {
         SPI_RW(*data++);
     }
     //发2个Byte的dummy CRC
     SPI_RW(0xff);
-    341c:	8f ef       	ldi	r24, 0xFF	; 255
-    341e:	0e 94 6c 18 	call	0x30d8	; 0x30d8 <SPI_RW>
+    343c:	8f ef       	ldi	r24, 0xFF	; 255
+    343e:	0e 94 7c 18 	call	0x30f8	; 0x30f8 <SPI_RW>
     SPI_RW(0xff);
-    3422:	8f ef       	ldi	r24, 0xFF	; 255
-    3424:	0e 94 6c 18 	call	0x30d8	; 0x30d8 <SPI_RW>
+    3442:	8f ef       	ldi	r24, 0xFF	; 255
+    3444:	0e 94 7c 18 	call	0x30f8	; 0x30f8 <SPI_RW>
     
     //等待SD卡应答
     r1=SPI_RW(0xff);
-    3428:	8f ef       	ldi	r24, 0xFF	; 255
-    342a:	0e 94 6c 18 	call	0x30d8	; 0x30d8 <SPI_RW>
+    3448:	8f ef       	ldi	r24, 0xFF	; 255
+    344a:	0e 94 7c 18 	call	0x30f8	; 0x30f8 <SPI_RW>
     if((r1&0x1F)!=0x05)
-    342e:	98 2f       	mov	r25, r24
-    3430:	9f 71       	andi	r25, 0x1F	; 31
-    3432:	95 30       	cpi	r25, 0x05	; 5
-    3434:	39 f0       	breq	.+14     	; 0x3444 <SD_WriteSingleBlock+0x96>
+    344e:	98 2f       	mov	r25, r24
+    3450:	9f 71       	andi	r25, 0x1F	; 31
+    3452:	95 30       	cpi	r25, 0x05	; 5
+    3454:	39 f0       	breq	.+14     	; 0x3464 <SD_WriteSingleBlock+0x96>
     {
         SD_CS_H;
-    3436:	2a 9a       	sbi	0x05, 2	; 5
+    3456:	2a 9a       	sbi	0x05, 2	; 5
         return r1 ;
-    3438:	11 c0       	rjmp	.+34     	; 0x345c <SD_WriteSingleBlock+0xae>
-    343a:	21 97       	sbiw	r28, 0x01	; 1
+    3458:	11 c0       	rjmp	.+34     	; 0x347c <SD_WriteSingleBlock+0xae>
+    345a:	21 97       	sbiw	r28, 0x01	; 1
     retry=0 ;
     while(!SPI_RW(0xff))
     {
         retry++;
         //如果长时间写入没有完成，报错退出
         if(retry>0xfffe)
-    343c:	29 f4       	brne	.+10     	; 0x3448 <SD_WriteSingleBlock+0x9a>
+    345c:	29 f4       	brne	.+10     	; 0x3468 <SD_WriteSingleBlock+0x9a>
         {
             SD_CS_H;
-    343e:	2a 9a       	sbi	0x05, 2	; 5
+    345e:	2a 9a       	sbi	0x05, 2	; 5
             return 1 ;
-    3440:	81 e0       	ldi	r24, 0x01	; 1
-    3442:	0c c0       	rjmp	.+24     	; 0x345c <SD_WriteSingleBlock+0xae>
-    3444:	cf ef       	ldi	r28, 0xFF	; 255
-    3446:	df ef       	ldi	r29, 0xFF	; 255
+    3460:	81 e0       	ldi	r24, 0x01	; 1
+    3462:	0c c0       	rjmp	.+24     	; 0x347c <SD_WriteSingleBlock+0xae>
+    3464:	cf ef       	ldi	r28, 0xFF	; 255
+    3466:	df ef       	ldi	r29, 0xFF	; 255
         return r1 ;
     }
     
     //等待操作完成
     retry=0 ;
     while(!SPI_RW(0xff))
-    3448:	8f ef       	ldi	r24, 0xFF	; 255
-    344a:	0e 94 6c 18 	call	0x30d8	; 0x30d8 <SPI_RW>
-    344e:	88 23       	and	r24, r24
-    3450:	a1 f3       	breq	.-24     	; 0x343a <SD_WriteSingleBlock+0x8c>
+    3468:	8f ef       	ldi	r24, 0xFF	; 255
+    346a:	0e 94 7c 18 	call	0x30f8	; 0x30f8 <SPI_RW>
+    346e:	88 23       	and	r24, r24
+    3470:	a1 f3       	breq	.-24     	; 0x345a <SD_WriteSingleBlock+0x8c>
             //写入超时返回1
         }
     }
     
     //写入完成，片选置1
     SD_CS_H;
-    3452:	2a 9a       	sbi	0x05, 2	; 5
+    3472:	2a 9a       	sbi	0x05, 2	; 5
     SPI_RW(0xff);
-    3454:	8f ef       	ldi	r24, 0xFF	; 255
-    3456:	0e 94 6c 18 	call	0x30d8	; 0x30d8 <SPI_RW>
+    3474:	8f ef       	ldi	r24, 0xFF	; 255
+    3476:	0e 94 7c 18 	call	0x30f8	; 0x30f8 <SPI_RW>
     
     return 0 ;
-    345a:	80 e0       	ldi	r24, 0x00	; 0
+    347a:	80 e0       	ldi	r24, 0x00	; 0
 }
-    345c:	df 91       	pop	r29
-    345e:	cf 91       	pop	r28
-    3460:	1f 91       	pop	r17
-    3462:	0f 91       	pop	r16
-    3464:	ff 90       	pop	r15
-    3466:	ef 90       	pop	r14
-    3468:	df 90       	pop	r13
-    346a:	cf 90       	pop	r12
-    346c:	08 95       	ret
+    347c:	df 91       	pop	r29
+    347e:	cf 91       	pop	r28
+    3480:	1f 91       	pop	r17
+    3482:	0f 91       	pop	r16
+    3484:	ff 90       	pop	r15
+    3486:	ef 90       	pop	r14
+    3488:	df 90       	pop	r13
+    348a:	cf 90       	pop	r12
+    348c:	08 95       	ret
 
-0000346e <SD_WaitReady>:
+0000348e <SD_WaitReady>:
     unsigned char r1 ;
     unsigned char retry ;
     retry=0 ;
     do 
     {
         r1=SPI_RW(0xFF);
-    346e:	8f ef       	ldi	r24, 0xFF	; 255
-    3470:	0e 94 6c 18 	call	0x30d8	; 0x30d8 <SPI_RW>
+    348e:	8f ef       	ldi	r24, 0xFF	; 255
+    3490:	0e 94 7c 18 	call	0x30f8	; 0x30f8 <SPI_RW>
         if(retry==255)//如果卡异常，会死循坏！
         {
             return 1 ;
         }
     }
     while(r1!=0xFF);
-    3474:	8f 3f       	cpi	r24, 0xFF	; 255
-    3476:	d9 f7       	brne	.-10     	; 0x346e <SD_WaitReady>
+    3494:	8f 3f       	cpi	r24, 0xFF	; 255
+    3496:	d9 f7       	brne	.-10     	; 0x348e <SD_WaitReady>
     
     return 0 ;
 }
-    3478:	80 e0       	ldi	r24, 0x00	; 0
-    347a:	08 95       	ret
+    3498:	80 e0       	ldi	r24, 0x00	; 0
+    349a:	08 95       	ret
 
-0000347c <SD_WriteMultiBlock>:
+0000349c <SD_WriteMultiBlock>:
 * Return         : unsigned char r1
 *                   0： 成功
 *                   other：失败
 *******************************************************************************/
 unsigned char SD_WriteMultiBlock(unsigned long sector,const unsigned char*data,unsigned char count)
 {
-    347c:	8f 92       	push	r8
-    347e:	9f 92       	push	r9
-    3480:	af 92       	push	r10
-    3482:	bf 92       	push	r11
-    3484:	df 92       	push	r13
-    3486:	ef 92       	push	r14
-    3488:	ff 92       	push	r15
-    348a:	0f 93       	push	r16
-    348c:	1f 93       	push	r17
-    348e:	cf 93       	push	r28
-    3490:	df 93       	push	r29
-    3492:	4b 01       	movw	r8, r22
-    3494:	5c 01       	movw	r10, r24
-    3496:	7a 01       	movw	r14, r20
-    3498:	d2 2e       	mov	r13, r18
+    349c:	8f 92       	push	r8
+    349e:	9f 92       	push	r9
+    34a0:	af 92       	push	r10
+    34a2:	bf 92       	push	r11
+    34a4:	df 92       	push	r13
+    34a6:	ef 92       	push	r14
+    34a8:	ff 92       	push	r15
+    34aa:	0f 93       	push	r16
+    34ac:	1f 93       	push	r17
+    34ae:	cf 93       	push	r28
+    34b0:	df 93       	push	r29
+    34b2:	4b 01       	movw	r8, r22
+    34b4:	5c 01       	movw	r10, r24
+    34b6:	7a 01       	movw	r14, r20
+    34b8:	d2 2e       	mov	r13, r18
     unsigned char r1 ;
     unsigned int i ;
     
     //设置为高速模式
     SPI_High();
-    349a:	0e 94 5b 18 	call	0x30b6	; 0x30b6 <SPI_High>
+    34ba:	0e 94 6b 18 	call	0x30d6	; 0x30d6 <SPI_High>
     
     //如果不是SDHC，给定的是sector地址，将其转换成byte地址
     if(SD_Type!=SD_TYPE_V2HC)
-    349e:	80 91 b8 01 	lds	r24, 0x01B8
-    34a2:	84 30       	cpi	r24, 0x04	; 4
-    34a4:	59 f0       	breq	.+22     	; 0x34bc <SD_WriteMultiBlock+0x40>
+    34be:	80 91 c4 01 	lds	r24, 0x01C4
+    34c2:	84 30       	cpi	r24, 0x04	; 4
+    34c4:	59 f0       	breq	.+22     	; 0x34dc <SD_WriteMultiBlock+0x40>
     {
         sector=sector<<9 ;
-    34a6:	07 2e       	mov	r0, r23
-    34a8:	79 e0       	ldi	r23, 0x09	; 9
-    34aa:	88 0c       	add	r8, r8
-    34ac:	99 1c       	adc	r9, r9
-    34ae:	aa 1c       	adc	r10, r10
-    34b0:	bb 1c       	adc	r11, r11
-    34b2:	7a 95       	dec	r23
-    34b4:	d1 f7       	brne	.-12     	; 0x34aa <SD_WriteMultiBlock+0x2e>
-    34b6:	70 2d       	mov	r23, r0
+    34c6:	07 2e       	mov	r0, r23
+    34c8:	79 e0       	ldi	r23, 0x09	; 9
+    34ca:	88 0c       	add	r8, r8
+    34cc:	99 1c       	adc	r9, r9
+    34ce:	aa 1c       	adc	r10, r10
+    34d0:	bb 1c       	adc	r11, r11
+    34d2:	7a 95       	dec	r23
+    34d4:	d1 f7       	brne	.-12     	; 0x34ca <SD_WriteMultiBlock+0x2e>
+    34d6:	70 2d       	mov	r23, r0
     }
     //如果目标卡不是MMC卡，启用ACMD23指令使能预擦除
     if(SD_Type!=SD_TYPE_MMC)
-    34b8:	88 23       	and	r24, r24
-    34ba:	41 f0       	breq	.+16     	; 0x34cc <SD_WriteMultiBlock+0x50>
+    34d8:	88 23       	and	r24, r24
+    34da:	41 f0       	breq	.+16     	; 0x34ec <SD_WriteMultiBlock+0x50>
     {
         r1=SD_SendCommand(ACMD23,count,0x00);
-    34bc:	4d 2d       	mov	r20, r13
-    34be:	50 e0       	ldi	r21, 0x00	; 0
-    34c0:	60 e0       	ldi	r22, 0x00	; 0
-    34c2:	70 e0       	ldi	r23, 0x00	; 0
-    34c4:	20 e0       	ldi	r18, 0x00	; 0
-    34c6:	87 e1       	ldi	r24, 0x17	; 23
-    34c8:	0e 94 f9 18 	call	0x31f2	; 0x31f2 <SD_SendCommand>
+    34dc:	4d 2d       	mov	r20, r13
+    34de:	50 e0       	ldi	r21, 0x00	; 0
+    34e0:	60 e0       	ldi	r22, 0x00	; 0
+    34e2:	70 e0       	ldi	r23, 0x00	; 0
+    34e4:	20 e0       	ldi	r18, 0x00	; 0
+    34e6:	87 e1       	ldi	r24, 0x17	; 23
+    34e8:	0e 94 09 19 	call	0x3212	; 0x3212 <SD_SendCommand>
     }
     //发多块写入指令
     r1=SD_SendCommand(CMD25,sector,0x00);
-    34cc:	20 e0       	ldi	r18, 0x00	; 0
-    34ce:	b5 01       	movw	r22, r10
-    34d0:	a4 01       	movw	r20, r8
-    34d2:	89 e1       	ldi	r24, 0x19	; 25
-    34d4:	0e 94 f9 18 	call	0x31f2	; 0x31f2 <SD_SendCommand>
+    34ec:	20 e0       	ldi	r18, 0x00	; 0
+    34ee:	b5 01       	movw	r22, r10
+    34f0:	a4 01       	movw	r20, r8
+    34f2:	89 e1       	ldi	r24, 0x19	; 25
+    34f4:	0e 94 09 19 	call	0x3212	; 0x3212 <SD_SendCommand>
     if(r1!=0x00)
-    34d8:	81 11       	cpse	r24, r1
-    34da:	41 c0       	rjmp	.+130    	; 0x355e <SD_WriteMultiBlock+0xe2>
+    34f8:	81 11       	cpse	r24, r1
+    34fa:	41 c0       	rjmp	.+130    	; 0x357e <SD_WriteMultiBlock+0xe2>
         return r1 ;
         //应答不正确，直接返回
     }
     
     //开始准备数据传输
     SD_CS_L;
-    34dc:	2a 98       	cbi	0x05, 2	; 5
+    34fc:	2a 98       	cbi	0x05, 2	; 5
     //先放3个空数据，等待SD卡准备好
     SPI_RW(0xff);
-    34de:	8f ef       	ldi	r24, 0xFF	; 255
-    34e0:	0e 94 6c 18 	call	0x30d8	; 0x30d8 <SPI_RW>
+    34fe:	8f ef       	ldi	r24, 0xFF	; 255
+    3500:	0e 94 7c 18 	call	0x30f8	; 0x30f8 <SPI_RW>
     SPI_RW(0xff);
-    34e4:	8f ef       	ldi	r24, 0xFF	; 255
-    34e6:	0e 94 6c 18 	call	0x30d8	; 0x30d8 <SPI_RW>
+    3504:	8f ef       	ldi	r24, 0xFF	; 255
+    3506:	0e 94 7c 18 	call	0x30f8	; 0x30f8 <SPI_RW>
     SPI_RW(0xff);
-    34ea:	8f ef       	ldi	r24, 0xFF	; 255
-    34ec:	0e 94 6c 18 	call	0x30d8	; 0x30d8 <SPI_RW>
+    350a:	8f ef       	ldi	r24, 0xFF	; 255
+    350c:	0e 94 7c 18 	call	0x30f8	; 0x30f8 <SPI_RW>
     //--------下面是N个sector写入的循环部分
     do 
     {
         //放起始令牌0xFC 表明是多块写入
         SPI_RW(0xFC);
-    34f0:	8c ef       	ldi	r24, 0xFC	; 252
-    34f2:	0e 94 6c 18 	call	0x30d8	; 0x30d8 <SPI_RW>
-    34f6:	e7 01       	movw	r28, r14
-    34f8:	8e ef       	ldi	r24, 0xFE	; 254
-    34fa:	f8 1a       	sub	r15, r24
-    34fc:	87 01       	movw	r16, r14
+    3510:	8c ef       	ldi	r24, 0xFC	; 252
+    3512:	0e 94 7c 18 	call	0x30f8	; 0x30f8 <SPI_RW>
+    3516:	e7 01       	movw	r28, r14
+    3518:	8e ef       	ldi	r24, 0xFE	; 254
+    351a:	f8 1a       	sub	r15, r24
+    351c:	87 01       	movw	r16, r14
         
         //放一个sector的数据
         for(i=0;i<512;i++)
         {
             SPI_RW(*data++);
-    34fe:	89 91       	ld	r24, Y+
-    3500:	0e 94 6c 18 	call	0x30d8	; 0x30d8 <SPI_RW>
+    351e:	89 91       	ld	r24, Y+
+    3520:	0e 94 7c 18 	call	0x30f8	; 0x30f8 <SPI_RW>
     {
         //放起始令牌0xFC 表明是多块写入
         SPI_RW(0xFC);
         
         //放一个sector的数据
         for(i=0;i<512;i++)
-    3504:	c0 17       	cp	r28, r16
-    3506:	d1 07       	cpc	r29, r17
-    3508:	d1 f7       	brne	.-12     	; 0x34fe <SD_WriteMultiBlock+0x82>
+    3524:	c0 17       	cp	r28, r16
+    3526:	d1 07       	cpc	r29, r17
+    3528:	d1 f7       	brne	.-12     	; 0x351e <SD_WriteMultiBlock+0x82>
         {
             SPI_RW(*data++);
         }
         //发2个Byte的dummy CRC
         SPI_RW(0xff);
-    350a:	8f ef       	ldi	r24, 0xFF	; 255
-    350c:	0e 94 6c 18 	call	0x30d8	; 0x30d8 <SPI_RW>
+    352a:	8f ef       	ldi	r24, 0xFF	; 255
+    352c:	0e 94 7c 18 	call	0x30f8	; 0x30f8 <SPI_RW>
         SPI_RW(0xff);
-    3510:	8f ef       	ldi	r24, 0xFF	; 255
-    3512:	0e 94 6c 18 	call	0x30d8	; 0x30d8 <SPI_RW>
+    3530:	8f ef       	ldi	r24, 0xFF	; 255
+    3532:	0e 94 7c 18 	call	0x30f8	; 0x30f8 <SPI_RW>
         
         //等待SD卡应答
         r1=SPI_RW(0xff);
-    3516:	8f ef       	ldi	r24, 0xFF	; 255
-    3518:	0e 94 6c 18 	call	0x30d8	; 0x30d8 <SPI_RW>
+    3536:	8f ef       	ldi	r24, 0xFF	; 255
+    3538:	0e 94 7c 18 	call	0x30f8	; 0x30f8 <SPI_RW>
         if((r1&0x1F)!=0x05)
-    351c:	98 2f       	mov	r25, r24
-    351e:	9f 71       	andi	r25, 0x1F	; 31
-    3520:	95 30       	cpi	r25, 0x05	; 5
-    3522:	11 f0       	breq	.+4      	; 0x3528 <SD_WriteMultiBlock+0xac>
+    353c:	98 2f       	mov	r25, r24
+    353e:	9f 71       	andi	r25, 0x1F	; 31
+    3540:	95 30       	cpi	r25, 0x05	; 5
+    3542:	11 f0       	breq	.+4      	; 0x3548 <SD_WriteMultiBlock+0xac>
         {
             SD_CS_H;
-    3524:	2a 9a       	sbi	0x05, 2	; 5
+    3544:	2a 9a       	sbi	0x05, 2	; 5
             //如果应答为报错，则带错误代码直接退出
             return r1 ;
-    3526:	1b c0       	rjmp	.+54     	; 0x355e <SD_WriteMultiBlock+0xe2>
+    3546:	1b c0       	rjmp	.+54     	; 0x357e <SD_WriteMultiBlock+0xe2>
         }
         
         //等待SD卡写入完成
         if(SD_WaitReady()==1)
-    3528:	0e 94 37 1a 	call	0x346e	; 0x346e <SD_WaitReady>
-    352c:	81 30       	cpi	r24, 0x01	; 1
-    352e:	11 f4       	brne	.+4      	; 0x3534 <SD_WriteMultiBlock+0xb8>
+    3548:	0e 94 47 1a 	call	0x348e	; 0x348e <SD_WaitReady>
+    354c:	81 30       	cpi	r24, 0x01	; 1
+    354e:	11 f4       	brne	.+4      	; 0x3554 <SD_WriteMultiBlock+0xb8>
         {
             SD_CS_H;
-    3530:	2a 9a       	sbi	0x05, 2	; 5
+    3550:	2a 9a       	sbi	0x05, 2	; 5
             //等待SD卡写入完成超时，直接退出报错
             return 1 ;
-    3532:	15 c0       	rjmp	.+42     	; 0x355e <SD_WriteMultiBlock+0xe2>
+    3552:	15 c0       	rjmp	.+42     	; 0x357e <SD_WriteMultiBlock+0xe2>
         }
         
         //本sector数据传输完成
     }
     while(--count);
-    3534:	da 94       	dec	r13
-    3536:	d1 10       	cpse	r13, r1
-    3538:	db cf       	rjmp	.-74     	; 0x34f0 <SD_WriteMultiBlock+0x74>
+    3554:	da 94       	dec	r13
+    3556:	d1 10       	cpse	r13, r1
+    3558:	db cf       	rjmp	.-74     	; 0x3510 <SD_WriteMultiBlock+0x74>
     
     //发结束传输令牌0xFD
     r1=SPI_RW(0xFD);
-    353a:	8d ef       	ldi	r24, 0xFD	; 253
-    353c:	0e 94 6c 18 	call	0x30d8	; 0x30d8 <SPI_RW>
+    355a:	8d ef       	ldi	r24, 0xFD	; 253
+    355c:	0e 94 7c 18 	call	0x30f8	; 0x30f8 <SPI_RW>
     if(r1==0x00)
-    3540:	81 11       	cpse	r24, r1
-    3542:	04 c0       	rjmp	.+8      	; 0x354c <SD_WriteMultiBlock+0xd0>
+    3560:	81 11       	cpse	r24, r1
+    3562:	04 c0       	rjmp	.+8      	; 0x356c <SD_WriteMultiBlock+0xd0>
     {
         count=0xfe ;
-    3544:	0f 2e       	mov	r0, r31
-    3546:	fe ef       	ldi	r31, 0xFE	; 254
-    3548:	df 2e       	mov	r13, r31
-    354a:	f0 2d       	mov	r31, r0
+    3564:	0f 2e       	mov	r0, r31
+    3566:	fe ef       	ldi	r31, 0xFE	; 254
+    3568:	df 2e       	mov	r13, r31
+    356a:	f0 2d       	mov	r31, r0
     }
     
     if(SD_WaitReady())
-    354c:	0e 94 37 1a 	call	0x346e	; 0x346e <SD_WaitReady>
-    3550:	81 11       	cpse	r24, r1
+    356c:	0e 94 47 1a 	call	0x348e	; 0x348e <SD_WaitReady>
+    3570:	81 11       	cpse	r24, r1
     {
         while(1){}
-    3552:	ff cf       	rjmp	.-2      	; 0x3552 <SD_WriteMultiBlock+0xd6>
+    3572:	ff cf       	rjmp	.-2      	; 0x3572 <SD_WriteMultiBlock+0xd6>
     }
     
     //写入完成，片选置1
     SD_CS_H;
-    3554:	2a 9a       	sbi	0x05, 2	; 5
+    3574:	2a 9a       	sbi	0x05, 2	; 5
     SPI_RW(0xff);
-    3556:	8f ef       	ldi	r24, 0xFF	; 255
-    3558:	0e 94 6c 18 	call	0x30d8	; 0x30d8 <SPI_RW>
+    3576:	8f ef       	ldi	r24, 0xFF	; 255
+    3578:	0e 94 7c 18 	call	0x30f8	; 0x30f8 <SPI_RW>
     
     return count ;
-    355c:	8d 2d       	mov	r24, r13
+    357c:	8d 2d       	mov	r24, r13
     //返回count值，如果写完则count=0，否则count=1
 }
-    355e:	df 91       	pop	r29
-    3560:	cf 91       	pop	r28
-    3562:	1f 91       	pop	r17
-    3564:	0f 91       	pop	r16
-    3566:	ff 90       	pop	r15
-    3568:	ef 90       	pop	r14
-    356a:	df 90       	pop	r13
-    356c:	bf 90       	pop	r11
-    356e:	af 90       	pop	r10
-    3570:	9f 90       	pop	r9
-    3572:	8f 90       	pop	r8
-    3574:	08 95       	ret
+    357e:	df 91       	pop	r29
+    3580:	cf 91       	pop	r28
+    3582:	1f 91       	pop	r17
+    3584:	0f 91       	pop	r16
+    3586:	ff 90       	pop	r15
+    3588:	ef 90       	pop	r14
+    358a:	df 90       	pop	r13
+    358c:	bf 90       	pop	r11
+    358e:	af 90       	pop	r10
+    3590:	9f 90       	pop	r9
+    3592:	8f 90       	pop	r8
+    3594:	08 95       	ret
 
-00003576 <SD_GetCSD>:
+00003596 <SD_GetCSD>:
 *                  0：NO_ERR
 *                  1：TIME_OUT
 *                  other：错误信息
 *******************************************************************************/
 unsigned char SD_GetCSD(unsigned char *csd_data)
 {
-    3576:	0f 93       	push	r16
-    3578:	1f 93       	push	r17
-    357a:	cf 93       	push	r28
-    357c:	8c 01       	movw	r16, r24
+    3596:	0f 93       	push	r16
+    3598:	1f 93       	push	r17
+    359a:	cf 93       	push	r28
+    359c:	8c 01       	movw	r16, r24
     unsigned char r1 ;
     
     //发CMD9命令，读CSD
     r1=SD_SendCommand(CMD9,0,0xFF);
-    357e:	2f ef       	ldi	r18, 0xFF	; 255
-    3580:	40 e0       	ldi	r20, 0x00	; 0
-    3582:	50 e0       	ldi	r21, 0x00	; 0
-    3584:	ba 01       	movw	r22, r20
-    3586:	89 e0       	ldi	r24, 0x09	; 9
-    3588:	0e 94 f9 18 	call	0x31f2	; 0x31f2 <SD_SendCommand>
-    358c:	c8 2f       	mov	r28, r24
+    359e:	2f ef       	ldi	r18, 0xFF	; 255
+    35a0:	40 e0       	ldi	r20, 0x00	; 0
+    35a2:	50 e0       	ldi	r21, 0x00	; 0
+    35a4:	ba 01       	movw	r22, r20
+    35a6:	89 e0       	ldi	r24, 0x09	; 9
+    35a8:	0e 94 09 19 	call	0x3212	; 0x3212 <SD_SendCommand>
+    35ac:	c8 2f       	mov	r28, r24
     if(r1!=0x00)
-    358e:	81 11       	cpse	r24, r1
-    3590:	06 c0       	rjmp	.+12     	; 0x359e <SD_GetCSD+0x28>
+    35ae:	81 11       	cpse	r24, r1
+    35b0:	06 c0       	rjmp	.+12     	; 0x35be <SD_GetCSD+0x28>
     {
         return r1 ;
         //没返回正确应答，则退出，报错
     }
     //接收16个字节的数据
     SD_ReceiveData(csd_data,16,RELEASE);
-    3592:	41 e0       	ldi	r20, 0x01	; 1
-    3594:	60 e1       	ldi	r22, 0x10	; 16
-    3596:	70 e0       	ldi	r23, 0x00	; 0
-    3598:	c8 01       	movw	r24, r16
-    359a:	0e 94 32 19 	call	0x3264	; 0x3264 <SD_ReceiveData>
+    35b2:	41 e0       	ldi	r20, 0x01	; 1
+    35b4:	60 e1       	ldi	r22, 0x10	; 16
+    35b6:	70 e0       	ldi	r23, 0x00	; 0
+    35b8:	c8 01       	movw	r24, r16
+    35ba:	0e 94 42 19 	call	0x3284	; 0x3284 <SD_ReceiveData>
     
     return 0 ;
 }
-    359e:	8c 2f       	mov	r24, r28
-    35a0:	cf 91       	pop	r28
-    35a2:	1f 91       	pop	r17
-    35a4:	0f 91       	pop	r16
-    35a6:	08 95       	ret
+    35be:	8c 2f       	mov	r24, r28
+    35c0:	cf 91       	pop	r28
+    35c2:	1f 91       	pop	r17
+    35c4:	0f 91       	pop	r16
+    35c6:	08 95       	ret
 
-000035a8 <SD_GetCapacity>:
+000035c8 <SD_GetCapacity>:
 * Output         : None
 * Return         : unsigned long capacity
 *                   0： 取容量出错
 *******************************************************************************/
 unsigned long SD_GetCapacity(void)
 {
-    35a8:	cf 93       	push	r28
-    35aa:	df 93       	push	r29
-    35ac:	cd b7       	in	r28, 0x3d	; 61
-    35ae:	de b7       	in	r29, 0x3e	; 62
-    35b0:	60 97       	sbiw	r28, 0x10	; 16
-    35b2:	0f b6       	in	r0, 0x3f	; 63
-    35b4:	f8 94       	cli
-    35b6:	de bf       	out	0x3e, r29	; 62
-    35b8:	0f be       	out	0x3f, r0	; 63
-    35ba:	cd bf       	out	0x3d, r28	; 61
+    35c8:	cf 93       	push	r28
+    35ca:	df 93       	push	r29
+    35cc:	cd b7       	in	r28, 0x3d	; 61
+    35ce:	de b7       	in	r29, 0x3e	; 62
+    35d0:	60 97       	sbiw	r28, 0x10	; 16
+    35d2:	0f b6       	in	r0, 0x3f	; 63
+    35d4:	f8 94       	cli
+    35d6:	de bf       	out	0x3e, r29	; 62
+    35d8:	0f be       	out	0x3f, r0	; 63
+    35da:	cd bf       	out	0x3d, r28	; 61
     unsigned char r1 ;
     unsigned int i ;
     unsigned int temp ;
     
     //取CSD信息，如果期间出错，返回0
     if(SD_GetCSD(csd)!=0)
-    35bc:	ce 01       	movw	r24, r28
-    35be:	01 96       	adiw	r24, 0x01	; 1
-    35c0:	0e 94 bb 1a 	call	0x3576	; 0x3576 <SD_GetCSD>
-    35c4:	81 11       	cpse	r24, r1
-    35c6:	65 c0       	rjmp	.+202    	; 0x3692 <SD_GetCapacity+0xea>
+    35dc:	ce 01       	movw	r24, r28
+    35de:	01 96       	adiw	r24, 0x01	; 1
+    35e0:	0e 94 cb 1a 	call	0x3596	; 0x3596 <SD_GetCSD>
+    35e4:	81 11       	cpse	r24, r1
+    35e6:	65 c0       	rjmp	.+202    	; 0x36b2 <SD_GetCapacity+0xea>
     {
         return 0 ;
     }
 
     //如果为SDHC卡，按照下面方式计算
     if((csd[0]&0xC0)==0x40)
-    35c8:	89 81       	ldd	r24, Y+1	; 0x01
-    35ca:	80 7c       	andi	r24, 0xC0	; 192
-    35cc:	80 34       	cpi	r24, 0x40	; 64
-    35ce:	19 f5       	brne	.+70     	; 0x3616 <SD_GetCapacity+0x6e>
+    35e8:	89 81       	ldd	r24, Y+1	; 0x01
+    35ea:	80 7c       	andi	r24, 0xC0	; 192
+    35ec:	80 34       	cpi	r24, 0x40	; 64
+    35ee:	19 f5       	brne	.+70     	; 0x3636 <SD_GetCapacity+0x6e>
     {
         Capacity=((((unsigned long)csd[8])<<8)+(unsigned long)csd[9]+1)*(unsigned long)1024 ;
-    35d0:	6a 85       	ldd	r22, Y+10	; 0x0a
-    35d2:	86 2f       	mov	r24, r22
-    35d4:	90 e0       	ldi	r25, 0x00	; 0
-    35d6:	a0 e0       	ldi	r26, 0x00	; 0
-    35d8:	b0 e0       	ldi	r27, 0x00	; 0
-    35da:	ac 01       	movw	r20, r24
-    35dc:	bd 01       	movw	r22, r26
-    35de:	4f 5f       	subi	r20, 0xFF	; 255
-    35e0:	5f 4f       	sbci	r21, 0xFF	; 255
-    35e2:	6f 4f       	sbci	r22, 0xFF	; 255
-    35e4:	7f 4f       	sbci	r23, 0xFF	; 255
-    35e6:	89 85       	ldd	r24, Y+9	; 0x09
-    35e8:	90 e0       	ldi	r25, 0x00	; 0
-    35ea:	a0 e0       	ldi	r26, 0x00	; 0
-    35ec:	b0 e0       	ldi	r27, 0x00	; 0
-    35ee:	ba 2f       	mov	r27, r26
-    35f0:	a9 2f       	mov	r26, r25
-    35f2:	98 2f       	mov	r25, r24
-    35f4:	88 27       	eor	r24, r24
-    35f6:	84 0f       	add	r24, r20
-    35f8:	95 1f       	adc	r25, r21
-    35fa:	a6 1f       	adc	r26, r22
-    35fc:	b7 1f       	adc	r27, r23
-    35fe:	bc 01       	movw	r22, r24
-    3600:	cd 01       	movw	r24, r26
-    3602:	05 2e       	mov	r0, r21
-    3604:	5a e0       	ldi	r21, 0x0A	; 10
-    3606:	66 0f       	add	r22, r22
-    3608:	77 1f       	adc	r23, r23
-    360a:	88 1f       	adc	r24, r24
-    360c:	99 1f       	adc	r25, r25
-    360e:	5a 95       	dec	r21
-    3610:	d1 f7       	brne	.-12     	; 0x3606 <SD_GetCapacity+0x5e>
-    3612:	50 2d       	mov	r21, r0
-    3614:	41 c0       	rjmp	.+130    	; 0x3698 <SD_GetCapacity+0xf0>
+    35f0:	6a 85       	ldd	r22, Y+10	; 0x0a
+    35f2:	86 2f       	mov	r24, r22
+    35f4:	90 e0       	ldi	r25, 0x00	; 0
+    35f6:	a0 e0       	ldi	r26, 0x00	; 0
+    35f8:	b0 e0       	ldi	r27, 0x00	; 0
+    35fa:	ac 01       	movw	r20, r24
+    35fc:	bd 01       	movw	r22, r26
+    35fe:	4f 5f       	subi	r20, 0xFF	; 255
+    3600:	5f 4f       	sbci	r21, 0xFF	; 255
+    3602:	6f 4f       	sbci	r22, 0xFF	; 255
+    3604:	7f 4f       	sbci	r23, 0xFF	; 255
+    3606:	89 85       	ldd	r24, Y+9	; 0x09
+    3608:	90 e0       	ldi	r25, 0x00	; 0
+    360a:	a0 e0       	ldi	r26, 0x00	; 0
+    360c:	b0 e0       	ldi	r27, 0x00	; 0
+    360e:	ba 2f       	mov	r27, r26
+    3610:	a9 2f       	mov	r26, r25
+    3612:	98 2f       	mov	r25, r24
+    3614:	88 27       	eor	r24, r24
+    3616:	84 0f       	add	r24, r20
+    3618:	95 1f       	adc	r25, r21
+    361a:	a6 1f       	adc	r26, r22
+    361c:	b7 1f       	adc	r27, r23
+    361e:	bc 01       	movw	r22, r24
+    3620:	cd 01       	movw	r24, r26
+    3622:	05 2e       	mov	r0, r21
+    3624:	5a e0       	ldi	r21, 0x0A	; 10
+    3626:	66 0f       	add	r22, r22
+    3628:	77 1f       	adc	r23, r23
+    362a:	88 1f       	adc	r24, r24
+    362c:	99 1f       	adc	r25, r25
+    362e:	5a 95       	dec	r21
+    3630:	d1 f7       	brne	.-12     	; 0x3626 <SD_GetCapacity+0x5e>
+    3632:	50 2d       	mov	r21, r0
+    3634:	41 c0       	rjmp	.+130    	; 0x36b8 <SD_GetCapacity+0xf0>
         //
         //               READ_BL_LEN
         //	BLOCK_LEN = 2
         /**********************************************/
         //C_SIZE
         i=csd[6]&0x03 ;
-    3616:	4f 81       	ldd	r20, Y+7	; 0x07
-    3618:	43 70       	andi	r20, 0x03	; 3
-    361a:	50 e0       	ldi	r21, 0x00	; 0
+    3636:	4f 81       	ldd	r20, Y+7	; 0x07
+    3638:	43 70       	andi	r20, 0x03	; 3
+    363a:	50 e0       	ldi	r21, 0x00	; 0
         i<<=8 ;
-    361c:	54 2f       	mov	r21, r20
-    361e:	44 27       	eor	r20, r20
+    363c:	54 2f       	mov	r21, r20
+    363e:	44 27       	eor	r20, r20
         i+=csd[7];
-    3620:	88 85       	ldd	r24, Y+8	; 0x08
-    3622:	48 0f       	add	r20, r24
-    3624:	51 1d       	adc	r21, r1
+    3640:	88 85       	ldd	r24, Y+8	; 0x08
+    3642:	48 0f       	add	r20, r24
+    3644:	51 1d       	adc	r21, r1
         i<<=2 ;
-    3626:	44 0f       	add	r20, r20
-    3628:	55 1f       	adc	r21, r21
-    362a:	44 0f       	add	r20, r20
-    362c:	55 1f       	adc	r21, r21
+    3646:	44 0f       	add	r20, r20
+    3648:	55 1f       	adc	r21, r21
+    364a:	44 0f       	add	r20, r20
+    364c:	55 1f       	adc	r21, r21
         i+=((csd[8]&0xc0)>>6);
-    362e:	a9 85       	ldd	r26, Y+9	; 0x09
-    3630:	a2 95       	swap	r26
-    3632:	a6 95       	lsr	r26
-    3634:	a6 95       	lsr	r26
-    3636:	a3 70       	andi	r26, 0x03	; 3
-    3638:	b0 e0       	ldi	r27, 0x00	; 0
-    363a:	11 96       	adiw	r26, 0x01	; 1
+    364e:	a9 85       	ldd	r26, Y+9	; 0x09
+    3650:	a2 95       	swap	r26
+    3652:	a6 95       	lsr	r26
+    3654:	a6 95       	lsr	r26
+    3656:	a3 70       	andi	r26, 0x03	; 3
+    3658:	b0 e0       	ldi	r27, 0x00	; 0
+    365a:	11 96       	adiw	r26, 0x01	; 1
         
         //C_SIZE_MULT
         r1=csd[9]&0x03 ;
-    363c:	8a 85       	ldd	r24, Y+10	; 0x0a
-    363e:	83 70       	andi	r24, 0x03	; 3
+    365c:	8a 85       	ldd	r24, Y+10	; 0x0a
+    365e:	83 70       	andi	r24, 0x03	; 3
         r1<<=1 ;
-    3640:	98 2f       	mov	r25, r24
-    3642:	99 0f       	add	r25, r25
+    3660:	98 2f       	mov	r25, r24
+    3662:	99 0f       	add	r25, r25
         r1+=((csd[10]&0x80)>>7);
-    3644:	8b 85       	ldd	r24, Y+11	; 0x0b
-    3646:	88 1f       	adc	r24, r24
-    3648:	88 27       	eor	r24, r24
-    364a:	88 1f       	adc	r24, r24
-    364c:	8e 5f       	subi	r24, 0xFE	; 254
+    3664:	8b 85       	ldd	r24, Y+11	; 0x0b
+    3666:	88 1f       	adc	r24, r24
+    3668:	88 27       	eor	r24, r24
+    366a:	88 1f       	adc	r24, r24
+    366c:	8e 5f       	subi	r24, 0xFE	; 254
         
         //BLOCKNR
         r1+=2 ;
-    364e:	89 0f       	add	r24, r25
+    366e:	89 0f       	add	r24, r25
         temp=1 ;
         while(r1)
-    3650:	39 f0       	breq	.+14     	; 0x3660 <SD_GetCapacity+0xb8>
-    3652:	21 e0       	ldi	r18, 0x01	; 1
-    3654:	30 e0       	ldi	r19, 0x00	; 0
+    3670:	39 f0       	breq	.+14     	; 0x3680 <SD_GetCapacity+0xb8>
+    3672:	21 e0       	ldi	r18, 0x01	; 1
+    3674:	30 e0       	ldi	r19, 0x00	; 0
         {
             temp*=2 ;
-    3656:	22 0f       	add	r18, r18
-    3658:	33 1f       	adc	r19, r19
+    3676:	22 0f       	add	r18, r18
+    3678:	33 1f       	adc	r19, r19
             r1--;
-    365a:	81 50       	subi	r24, 0x01	; 1
+    367a:	81 50       	subi	r24, 0x01	; 1
         r1+=((csd[10]&0x80)>>7);
         
         //BLOCKNR
         r1+=2 ;
         temp=1 ;
         while(r1)
-    365c:	e1 f7       	brne	.-8      	; 0x3656 <SD_GetCapacity+0xae>
-    365e:	02 c0       	rjmp	.+4      	; 0x3664 <SD_GetCapacity+0xbc>
+    367c:	e1 f7       	brne	.-8      	; 0x3676 <SD_GetCapacity+0xae>
+    367e:	02 c0       	rjmp	.+4      	; 0x3684 <SD_GetCapacity+0xbc>
         r1<<=1 ;
         r1+=((csd[10]&0x80)>>7);
         
         //BLOCKNR
         r1+=2 ;
         temp=1 ;
-    3660:	21 e0       	ldi	r18, 0x01	; 1
-    3662:	30 e0       	ldi	r19, 0x00	; 0
+    3680:	21 e0       	ldi	r18, 0x01	; 1
+    3682:	30 e0       	ldi	r19, 0x00	; 0
         while(r1)
         {
             temp*=2 ;
             r1--;
         }
         Capacity=((unsigned long)(i+1))*((unsigned long)temp);
-    3664:	a4 0f       	add	r26, r20
-    3666:	b5 1f       	adc	r27, r21
-    3668:	0e 94 a2 1b 	call	0x3744	; 0x3744 <__umulhisi3>
-    366c:	9b 01       	movw	r18, r22
-    366e:	ac 01       	movw	r20, r24
+    3684:	a4 0f       	add	r26, r20
+    3686:	b5 1f       	adc	r27, r21
+    3688:	0e 94 b2 1b 	call	0x3764	; 0x3764 <__umulhisi3>
+    368c:	9b 01       	movw	r18, r22
+    368e:	ac 01       	movw	r20, r24
         
         // READ_BL_LEN
         i=csd[5]&0x0f ;
-    3670:	8e 81       	ldd	r24, Y+6	; 0x06
-    3672:	8f 70       	andi	r24, 0x0F	; 15
-    3674:	90 e0       	ldi	r25, 0x00	; 0
+    3690:	8e 81       	ldd	r24, Y+6	; 0x06
+    3692:	8f 70       	andi	r24, 0x0F	; 15
+    3694:	90 e0       	ldi	r25, 0x00	; 0
         //BLOCK_LEN
         temp=1 ;
         while(i)
-    3676:	00 97       	sbiw	r24, 0x00	; 0
-    3678:	39 f0       	breq	.+14     	; 0x3688 <SD_GetCapacity+0xe0>
-    367a:	a1 e0       	ldi	r26, 0x01	; 1
-    367c:	b0 e0       	ldi	r27, 0x00	; 0
+    3696:	00 97       	sbiw	r24, 0x00	; 0
+    3698:	39 f0       	breq	.+14     	; 0x36a8 <SD_GetCapacity+0xe0>
+    369a:	a1 e0       	ldi	r26, 0x01	; 1
+    369c:	b0 e0       	ldi	r27, 0x00	; 0
         {
             temp*=2 ;
-    367e:	aa 0f       	add	r26, r26
-    3680:	bb 1f       	adc	r27, r27
+    369e:	aa 0f       	add	r26, r26
+    36a0:	bb 1f       	adc	r27, r27
             i--;
-    3682:	01 97       	sbiw	r24, 0x01	; 1
+    36a2:	01 97       	sbiw	r24, 0x01	; 1
         
         // READ_BL_LEN
         i=csd[5]&0x0f ;
         //BLOCK_LEN
         temp=1 ;
         while(i)
-    3684:	e1 f7       	brne	.-8      	; 0x367e <SD_GetCapacity+0xd6>
-    3686:	02 c0       	rjmp	.+4      	; 0x368c <SD_GetCapacity+0xe4>
+    36a4:	e1 f7       	brne	.-8      	; 0x369e <SD_GetCapacity+0xd6>
+    36a6:	02 c0       	rjmp	.+4      	; 0x36ac <SD_GetCapacity+0xe4>
         Capacity=((unsigned long)(i+1))*((unsigned long)temp);
         
         // READ_BL_LEN
         i=csd[5]&0x0f ;
         //BLOCK_LEN
         temp=1 ;
-    3688:	a1 e0       	ldi	r26, 0x01	; 1
-    368a:	b0 e0       	ldi	r27, 0x00	; 0
+    36a8:	a1 e0       	ldi	r26, 0x01	; 1
+    36aa:	b0 e0       	ldi	r27, 0x00	; 0
         {
             temp*=2 ;
             i--;
         }
         //The final result
         Capacity*=(unsigned long)temp ;
-    368c:	0e 94 b1 1b 	call	0x3762	; 0x3762 <__muluhisi3>
-    3690:	03 c0       	rjmp	.+6      	; 0x3698 <SD_GetCapacity+0xf0>
+    36ac:	0e 94 c1 1b 	call	0x3782	; 0x3782 <__muluhisi3>
+    36b0:	03 c0       	rjmp	.+6      	; 0x36b8 <SD_GetCapacity+0xf0>
     unsigned int temp ;
     
     //取CSD信息，如果期间出错，返回0
     if(SD_GetCSD(csd)!=0)
     {
         return 0 ;
-    3692:	60 e0       	ldi	r22, 0x00	; 0
-    3694:	70 e0       	ldi	r23, 0x00	; 0
-    3696:	cb 01       	movw	r24, r22
+    36b2:	60 e0       	ldi	r22, 0x00	; 0
+    36b4:	70 e0       	ldi	r23, 0x00	; 0
+    36b6:	cb 01       	movw	r24, r22
         //The final result
         Capacity*=(unsigned long)temp ;
         //Capacity /= 512;
     }
     return (unsigned long)Capacity ;
 }
-    3698:	60 96       	adiw	r28, 0x10	; 16
-    369a:	0f b6       	in	r0, 0x3f	; 63
-    369c:	f8 94       	cli
-    369e:	de bf       	out	0x3e, r29	; 62
-    36a0:	0f be       	out	0x3f, r0	; 63
-    36a2:	cd bf       	out	0x3d, r28	; 61
-    36a4:	df 91       	pop	r29
-    36a6:	cf 91       	pop	r28
-    36a8:	08 95       	ret
+    36b8:	60 96       	adiw	r28, 0x10	; 16
+    36ba:	0f b6       	in	r0, 0x3f	; 63
+    36bc:	f8 94       	cli
+    36be:	de bf       	out	0x3e, r29	; 62
+    36c0:	0f be       	out	0x3f, r0	; 63
+    36c2:	cd bf       	out	0x3d, r28	; 61
+    36c4:	df 91       	pop	r29
+    36c6:	cf 91       	pop	r28
+    36c8:	08 95       	ret
 
-000036aa <Serial_Init>:
+000036ca <Serial_Init>:
 
 /*
     串口初始化程序    
 */
 void Serial_Init(unsigned long BAUD)
 {	
-    36aa:	9b 01       	movw	r18, r22
-    36ac:	ac 01       	movw	r20, r24
+    36ca:	9b 01       	movw	r18, r22
+    36cc:	ac 01       	movw	r20, r24
 	/*    设置波特率    */
 	UBRR0L= (unsigned char)((F_CPU/BAUD/16)-1)%256;
-    36ae:	60 e4       	ldi	r22, 0x40	; 64
-    36b0:	72 e4       	ldi	r23, 0x42	; 66
-    36b2:	8f e0       	ldi	r24, 0x0F	; 15
-    36b4:	90 e0       	ldi	r25, 0x00	; 0
-    36b6:	0e 94 80 1b 	call	0x3700	; 0x3700 <__udivmodsi4>
-    36ba:	21 50       	subi	r18, 0x01	; 1
-    36bc:	20 93 c4 00 	sts	0x00C4, r18
+    36ce:	60 e4       	ldi	r22, 0x40	; 64
+    36d0:	72 e4       	ldi	r23, 0x42	; 66
+    36d2:	8f e0       	ldi	r24, 0x0F	; 15
+    36d4:	90 e0       	ldi	r25, 0x00	; 0
+    36d6:	0e 94 90 1b 	call	0x3720	; 0x3720 <__udivmodsi4>
+    36da:	21 50       	subi	r18, 0x01	; 1
+    36dc:	20 93 c4 00 	sts	0x00C4, r18
 	UBRR0H= (unsigned char)((F_CPU/BAUD/16)-1)/256;
-    36c0:	10 92 c5 00 	sts	0x00C5, r1
+    36e0:	10 92 c5 00 	sts	0x00C5, r1
 	/*    使能接收中断，使能接收器与发送器    */
 	UCSR0B=(1<<RXEN0)|(1<<TXEN0);
-    36c4:	88 e1       	ldi	r24, 0x18	; 24
-    36c6:	80 93 c1 00 	sts	0x00C1, r24
+    36e4:	88 e1       	ldi	r24, 0x18	; 24
+    36e6:	80 93 c1 00 	sts	0x00C1, r24
 	/*    设置帧格式 ：  8个数据位，1个停止位    */
 	UCSR0C=(1<<UCSZ01)|(1<<UCSZ00);	
-    36ca:	86 e0       	ldi	r24, 0x06	; 6
-    36cc:	80 93 c2 00 	sts	0x00C2, r24
-    36d0:	08 95       	ret
+    36ea:	86 e0       	ldi	r24, 0x06	; 6
+    36ec:	80 93 c2 00 	sts	0x00C2, r24
+    36f0:	08 95       	ret
 
-000036d2 <Serial_Send>:
+000036f2 <Serial_Send>:
 }
 
 void Serial_Send(unsigned char data)
 {
 	/* 等待发送缓冲器为空 */
 	while ( !( UCSR0A & (1<<UDRE0)) )
-    36d2:	e0 ec       	ldi	r30, 0xC0	; 192
-    36d4:	f0 e0       	ldi	r31, 0x00	; 0
-    36d6:	90 81       	ld	r25, Z
-    36d8:	95 ff       	sbrs	r25, 5
-    36da:	fd cf       	rjmp	.-6      	; 0x36d6 <Serial_Send+0x4>
+    36f2:	e0 ec       	ldi	r30, 0xC0	; 192
+    36f4:	f0 e0       	ldi	r31, 0x00	; 0
+    36f6:	90 81       	ld	r25, Z
+    36f8:	95 ff       	sbrs	r25, 5
+    36fa:	fd cf       	rjmp	.-6      	; 0x36f6 <Serial_Send+0x4>
 	;
 	/* 将数据放入缓冲器，发送数据 */
 	UDR0 = data;
-    36dc:	80 93 c6 00 	sts	0x00C6, r24
-    36e0:	08 95       	ret
+    36fc:	80 93 c6 00 	sts	0x00C6, r24
+    3700:	08 95       	ret
 
-000036e2 <Serial_SendString>:
+00003702 <Serial_SendString>:
 }
 
 void Serial_SendString(char *s)
 {
-    36e2:	cf 93       	push	r28
-    36e4:	df 93       	push	r29
-    36e6:	ec 01       	movw	r28, r24
+    3702:	cf 93       	push	r28
+    3704:	df 93       	push	r29
+    3706:	ec 01       	movw	r28, r24
 	while(*s)
-    36e8:	88 81       	ld	r24, Y
-    36ea:	88 23       	and	r24, r24
-    36ec:	31 f0       	breq	.+12     	; 0x36fa <Serial_SendString+0x18>
-    36ee:	21 96       	adiw	r28, 0x01	; 1
+    3708:	88 81       	ld	r24, Y
+    370a:	88 23       	and	r24, r24
+    370c:	31 f0       	breq	.+12     	; 0x371a <Serial_SendString+0x18>
+    370e:	21 96       	adiw	r28, 0x01	; 1
 	{
 		Serial_Send(*s);
-    36f0:	0e 94 69 1b 	call	0x36d2	; 0x36d2 <Serial_Send>
+    3710:	0e 94 79 1b 	call	0x36f2	; 0x36f2 <Serial_Send>
 	UDR0 = data;
 }
 
 void Serial_SendString(char *s)
 {
 	while(*s)
-    36f4:	89 91       	ld	r24, Y+
-    36f6:	81 11       	cpse	r24, r1
-    36f8:	fb cf       	rjmp	.-10     	; 0x36f0 <Serial_SendString+0xe>
+    3714:	89 91       	ld	r24, Y+
+    3716:	81 11       	cpse	r24, r1
+    3718:	fb cf       	rjmp	.-10     	; 0x3710 <Serial_SendString+0xe>
 	{
 		Serial_Send(*s);
 		s++;
 	}
-    36fa:	df 91       	pop	r29
-    36fc:	cf 91       	pop	r28
-    36fe:	08 95       	ret
+    371a:	df 91       	pop	r29
+    371c:	cf 91       	pop	r28
+    371e:	08 95       	ret
 
-00003700 <__udivmodsi4>:
-    3700:	a1 e2       	ldi	r26, 0x21	; 33
-    3702:	1a 2e       	mov	r1, r26
-    3704:	aa 1b       	sub	r26, r26
-    3706:	bb 1b       	sub	r27, r27
-    3708:	fd 01       	movw	r30, r26
-    370a:	0d c0       	rjmp	.+26     	; 0x3726 <__udivmodsi4_ep>
+00003720 <__udivmodsi4>:
+    3720:	a1 e2       	ldi	r26, 0x21	; 33
+    3722:	1a 2e       	mov	r1, r26
+    3724:	aa 1b       	sub	r26, r26
+    3726:	bb 1b       	sub	r27, r27
+    3728:	fd 01       	movw	r30, r26
+    372a:	0d c0       	rjmp	.+26     	; 0x3746 <__udivmodsi4_ep>
 
-0000370c <__udivmodsi4_loop>:
-    370c:	aa 1f       	adc	r26, r26
-    370e:	bb 1f       	adc	r27, r27
-    3710:	ee 1f       	adc	r30, r30
-    3712:	ff 1f       	adc	r31, r31
-    3714:	a2 17       	cp	r26, r18
-    3716:	b3 07       	cpc	r27, r19
-    3718:	e4 07       	cpc	r30, r20
-    371a:	f5 07       	cpc	r31, r21
-    371c:	20 f0       	brcs	.+8      	; 0x3726 <__udivmodsi4_ep>
-    371e:	a2 1b       	sub	r26, r18
-    3720:	b3 0b       	sbc	r27, r19
-    3722:	e4 0b       	sbc	r30, r20
-    3724:	f5 0b       	sbc	r31, r21
+0000372c <__udivmodsi4_loop>:
+    372c:	aa 1f       	adc	r26, r26
+    372e:	bb 1f       	adc	r27, r27
+    3730:	ee 1f       	adc	r30, r30
+    3732:	ff 1f       	adc	r31, r31
+    3734:	a2 17       	cp	r26, r18
+    3736:	b3 07       	cpc	r27, r19
+    3738:	e4 07       	cpc	r30, r20
+    373a:	f5 07       	cpc	r31, r21
+    373c:	20 f0       	brcs	.+8      	; 0x3746 <__udivmodsi4_ep>
+    373e:	a2 1b       	sub	r26, r18
+    3740:	b3 0b       	sbc	r27, r19
+    3742:	e4 0b       	sbc	r30, r20
+    3744:	f5 0b       	sbc	r31, r21
 
-00003726 <__udivmodsi4_ep>:
-    3726:	66 1f       	adc	r22, r22
-    3728:	77 1f       	adc	r23, r23
-    372a:	88 1f       	adc	r24, r24
-    372c:	99 1f       	adc	r25, r25
-    372e:	1a 94       	dec	r1
-    3730:	69 f7       	brne	.-38     	; 0x370c <__udivmodsi4_loop>
-    3732:	60 95       	com	r22
-    3734:	70 95       	com	r23
-    3736:	80 95       	com	r24
-    3738:	90 95       	com	r25
-    373a:	9b 01       	movw	r18, r22
-    373c:	ac 01       	movw	r20, r24
-    373e:	bd 01       	movw	r22, r26
-    3740:	cf 01       	movw	r24, r30
-    3742:	08 95       	ret
+00003746 <__udivmodsi4_ep>:
+    3746:	66 1f       	adc	r22, r22
+    3748:	77 1f       	adc	r23, r23
+    374a:	88 1f       	adc	r24, r24
+    374c:	99 1f       	adc	r25, r25
+    374e:	1a 94       	dec	r1
+    3750:	69 f7       	brne	.-38     	; 0x372c <__udivmodsi4_loop>
+    3752:	60 95       	com	r22
+    3754:	70 95       	com	r23
+    3756:	80 95       	com	r24
+    3758:	90 95       	com	r25
+    375a:	9b 01       	movw	r18, r22
+    375c:	ac 01       	movw	r20, r24
+    375e:	bd 01       	movw	r22, r26
+    3760:	cf 01       	movw	r24, r30
+    3762:	08 95       	ret
 
-00003744 <__umulhisi3>:
-    3744:	a2 9f       	mul	r26, r18
-    3746:	b0 01       	movw	r22, r0
-    3748:	b3 9f       	mul	r27, r19
-    374a:	c0 01       	movw	r24, r0
-    374c:	a3 9f       	mul	r26, r19
-    374e:	70 0d       	add	r23, r0
-    3750:	81 1d       	adc	r24, r1
-    3752:	11 24       	eor	r1, r1
-    3754:	91 1d       	adc	r25, r1
-    3756:	b2 9f       	mul	r27, r18
-    3758:	70 0d       	add	r23, r0
-    375a:	81 1d       	adc	r24, r1
-    375c:	11 24       	eor	r1, r1
-    375e:	91 1d       	adc	r25, r1
-    3760:	08 95       	ret
+00003764 <__umulhisi3>:
+    3764:	a2 9f       	mul	r26, r18
+    3766:	b0 01       	movw	r22, r0
+    3768:	b3 9f       	mul	r27, r19
+    376a:	c0 01       	movw	r24, r0
+    376c:	a3 9f       	mul	r26, r19
+    376e:	70 0d       	add	r23, r0
+    3770:	81 1d       	adc	r24, r1
+    3772:	11 24       	eor	r1, r1
+    3774:	91 1d       	adc	r25, r1
+    3776:	b2 9f       	mul	r27, r18
+    3778:	70 0d       	add	r23, r0
+    377a:	81 1d       	adc	r24, r1
+    377c:	11 24       	eor	r1, r1
+    377e:	91 1d       	adc	r25, r1
+    3780:	08 95       	ret
 
-00003762 <__muluhisi3>:
-    3762:	0e 94 a2 1b 	call	0x3744	; 0x3744 <__umulhisi3>
-    3766:	a5 9f       	mul	r26, r21
-    3768:	90 0d       	add	r25, r0
-    376a:	b4 9f       	mul	r27, r20
-    376c:	90 0d       	add	r25, r0
-    376e:	a4 9f       	mul	r26, r20
-    3770:	80 0d       	add	r24, r0
-    3772:	91 1d       	adc	r25, r1
-    3774:	11 24       	eor	r1, r1
-    3776:	08 95       	ret
+00003782 <__muluhisi3>:
+    3782:	0e 94 b2 1b 	call	0x3764	; 0x3764 <__umulhisi3>
+    3786:	a5 9f       	mul	r26, r21
+    3788:	90 0d       	add	r25, r0
+    378a:	b4 9f       	mul	r27, r20
+    378c:	90 0d       	add	r25, r0
+    378e:	a4 9f       	mul	r26, r20
+    3790:	80 0d       	add	r24, r0
+    3792:	91 1d       	adc	r25, r1
+    3794:	11 24       	eor	r1, r1
+    3796:	08 95       	ret
 
-00003778 <_exit>:
-    3778:	f8 94       	cli
+00003798 <_exit>:
+    3798:	f8 94       	cli
 
-0000377a <__stop_program>:
-    377a:	ff cf       	rjmp	.-2      	; 0x377a <__stop_program>
+0000379a <__stop_program>:
+    379a:	ff cf       	rjmp	.-2      	; 0x379a <__stop_program>
